@@ -9,6 +9,7 @@ namespace WeatherForecastSample.WebAPI.DataAccess.Configuration
         public void Configure(EntityTypeBuilder<WeatherForecast> builder)
         {
             builder.HasKey(wf => wf.Id);
+            builder.HasIndex(wf => wf.Date).IsUnique();
             builder.Property(wf => wf.Date).HasConversion<DateOnlyConverter, DateOnlyComparer>();
         }
     }
