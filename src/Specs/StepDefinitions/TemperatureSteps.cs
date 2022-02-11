@@ -1,3 +1,7 @@
+using FluentAssertions;
+using TechTalk.SpecFlow;
+using WeatherForecastSample.WebAPI.Domain;
+
 namespace WeatherForecastSample.Specs.StepDefinitions
 {
     [Binding]
