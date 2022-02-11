@@ -42,14 +42,14 @@ namespace WeatherForecastSample.Specs.StepDefinitions
             _dbContext.SaveChanges();
         }
 
-        [When(@"I retieve the weather forecast for (.*)")]
-        public void WhenIRetieveTheWeatherForecastFor(DateOnly date)
+        [When(@"I retrieve the weather forecast for (.*)")]
+        public void WhenIRetrieveTheWeatherForecastFor(DateOnly date)
         {
             _actualWeatherForecast = _weatherForecastService.GetByDate(date);
         }
 
-        [When(@"I retieve the weather forecasts for the coming week")]
-        public void WhenIRetieveTheWeatherForecastsForTheComingWeek()
+        [When(@"I retrieve the weather forecasts for the coming week")]
+        public void WhenIRetrieveTheWeatherForecastsForTheComingWeek()
         {
             _actualWeatherForecasts = _weatherForecastService.GetForComingWeek().ToList();
         }

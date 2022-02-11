@@ -20,7 +20,7 @@ Scenario: Retrieve weather forecast for the coming week
         | 16 February 2022 | Snowy        | -4                  | -1                  |
         | 17 February 2022 | Snowy        | -5                  | 0                   |
         | 18 February 2022 | Cloudy       | 0                   | 3                   |
-    When I retieve the weather forecasts for the coming week
+    When I retrieve the weather forecasts for the coming week
     Then the following weather forecasts are returned
         | Date             | Weather Type | Minimum Temperature | Maximum Temperature |
         | 11 February 2022 | Sunny        | 9                   | 12                  |
