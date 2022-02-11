@@ -28,5 +28,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+//DON'T USE IN PRODUCTION: this will allow the Blazor UI to call the Web API
+app.UseCors(cors => cors.AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .SetIsOriginAllowed(origin => true)
+                        .AllowCredentials());
+
 app.Run();
 
