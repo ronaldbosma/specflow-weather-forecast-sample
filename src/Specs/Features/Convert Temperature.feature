@@ -23,3 +23,17 @@ Scenario Outline: Convert Celsius to Fahrenheit
 		| Freezing point   | 0       | 32         |
 		| Body Temperature | 37      | 99         |
 		| Boiling point    | 100     | 212        |
+
+
+Scenario Outline: Convert Fahrenheit to Celsius
+
+	When the temperature is <fahrenheit> °F
+	Then the temperature is <celsius> °C
+
+	Examples:
+		| case             | fahrenheit | celsius |
+		| Absolute Zero    | -459       | -273    |
+		| Parity           | -40        | -40     |
+		| Freezing point   | 32         | 0       |
+		| Body Temperature | 99         | 37      |
+		| Boiling point    | 212        | 100     |

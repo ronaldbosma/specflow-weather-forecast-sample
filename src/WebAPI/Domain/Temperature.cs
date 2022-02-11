@@ -18,5 +18,13 @@
 
             return new(degreesCelsius, degreesFahrenheitRoundedOf);
         }
+
+        public static Temperature CreateFromDegreesFahrenheit(int degreesFahrenheit)
+        {
+            decimal degreesCelsius = ((decimal)degreesFahrenheit - 32) * 5 / 9;
+            int degreesCelsiusRoundedOf = (int)Math.Round(degreesCelsius, 0, MidpointRounding.AwayFromZero);
+
+            return new(degreesCelsiusRoundedOf, degreesFahrenheit);
+        }
     }
 }
