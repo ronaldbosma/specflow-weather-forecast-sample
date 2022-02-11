@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using FluentAssertions;
-using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using WeatherForecastSample.WebAPI.BusinessLogic;
@@ -48,9 +46,9 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         }
 
         [Then(@"the following weather forecast is returned")]
-        public void ThenTheFollowingWeatherForecastIsReturned(Table table)
+        public void ThenTheFollowingWeatherForecastIsReturned(Table expectedWeatherForecast)
         {
-            table.CompareToInstance(_actualWeatherForecast);
+            expectedWeatherForecast.CompareToInstance(_actualWeatherForecast);
         }
     }
 }
