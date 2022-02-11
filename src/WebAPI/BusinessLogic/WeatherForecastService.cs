@@ -1,5 +1,5 @@
 ﻿using WeatherForecastSample.WebAPI.DataAccess;
-using WeatherForecastSample.WebAPI.Domain;
+using WeatherForecastSample.WebAPI.Entities;
 
 namespace WeatherForecastSample.WebAPI.BusinessLogic
 {

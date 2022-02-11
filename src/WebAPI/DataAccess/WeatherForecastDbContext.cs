@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WeatherForecastSample.WebAPI.Domain;
+using WeatherForecastSample.WebAPI.Entities;
 
 namespace WeatherForecastSample.WebAPI.DataAccess
 {

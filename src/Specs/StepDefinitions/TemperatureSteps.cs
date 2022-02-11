@@ -1,6 +1,6 @@
 using FluentAssertions;
 using TechTalk.SpecFlow;
-using WeatherForecastSample.WebAPI.Domain;
+using WeatherForecastSample.WebAPI.Entities;
 
 namespace WeatherForecastSample.Specs.StepDefinitions
 {

@@ -1,4 +1,4 @@
-﻿namespace WeatherForecastSample.WebAPI.Domain
+﻿namespace WeatherForecastSample.WebAPI.Entities
 {
     internal class WeatherForecast
     {

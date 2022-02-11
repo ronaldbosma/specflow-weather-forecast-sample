@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using WeatherForecastSample.WebAPI.BusinessLogic;
 using WeatherForecastSample.WebAPI.DataAccess;
-using WeatherForecastSample.WebAPI.Domain;
+using WeatherForecastSample.WebAPI.Entities;
 
 namespace WeatherForecastSample.Specs.StepDefinitions
 {
