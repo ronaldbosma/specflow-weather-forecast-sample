@@ -1,4 +1,4 @@
-﻿namespace WeatherForecastSample.WebAPI.Entities
+﻿namespace WeatherForecastSample.Shared.Models
 {
     public class WeatherForecast
     {

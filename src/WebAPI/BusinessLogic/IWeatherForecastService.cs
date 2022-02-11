@@ -2,7 +2,7 @@
 
 namespace WeatherForecastSample.WebAPI.BusinessLogic
 {
-    internal interface IWeatherForecastService
+    public interface IWeatherForecastService
     {
         WeatherForecast GetByDate(DateOnly date);
     }

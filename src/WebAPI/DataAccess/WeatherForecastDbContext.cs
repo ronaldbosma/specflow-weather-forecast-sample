@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WeatherForecastSample.WebAPI.DataAccess.Configuration;
 using WeatherForecastSample.WebAPI.Entities;
 
 namespace WeatherForecastSample.WebAPI.DataAccess
@@ -8,6 +9,11 @@ namespace WeatherForecastSample.WebAPI.DataAccess
         public WeatherForecastDbContext(DbContextOptions<WeatherForecastDbContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(WeatherForecastEntityTypeConfiguration).Assembly);
         }
 
         public DbSet<WeatherForecast> WeatherForecasts => Set<WeatherForecast>();

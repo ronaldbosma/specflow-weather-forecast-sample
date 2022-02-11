@@ -17,7 +17,8 @@ namespace WeatherForecastSample.Specs.StepDefinitions
 
         public WeatherForecastSteps()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<WeatherForecastDbContext>().UseInMemoryDatabase("WeatherForecast");
+            var optionsBuilder = new DbContextOptionsBuilder<WeatherForecastDbContext>()
+                .UseInMemoryDatabase("WeatherForecastSample.WeatherForecast");
             _dbContext = new WeatherForecastDbContext(optionsBuilder.Options);
 
             _weatherForecastService = new WeatherForecastService(

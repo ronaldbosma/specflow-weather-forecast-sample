@@ -1,5 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using WeatherForecastSample.WebAPI.DataAccess;
+using WeatherForecastSample.WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +8,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<WeatherForecastDbContext>(
-    options => options.UseSqlServer("name=ConnectionStrings:WeatherForecastConnection"));
+builder.Services.AddWeatherForecastDbContext();
+builder.Services.AddWeatherForecastDependencies();
+
+builder.Services.EnsureDatabaseExists();
 
 var app = builder.Build();
 
@@ -28,3 +29,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
