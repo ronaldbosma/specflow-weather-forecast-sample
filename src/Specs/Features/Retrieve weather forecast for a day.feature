@@ -35,5 +35,8 @@ Scenario: Retrieve weather forecast for today
         | 16 February 2022 | Snowy        | -4                  | -1                  |
     When I retieve the weather forecast for today
     Then the following weather forecast is returned
-        | Date             | Weather Type | Minimum Temperature | Maximum Temperature |
-        | 11 February 2022 | Sunny        | 9                   | 12                  |
+        | Property            | Value            |
+        | Date                | 11 February 2022 |
+        | Weather Type        | Sunny            |
+        | Minimum Temperature | 9                |
+        | Maximum Temperature | 12               |
