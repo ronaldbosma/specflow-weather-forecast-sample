@@ -5,7 +5,7 @@ using WeatherForecastSample.WebAPI.Domain;
 namespace WeatherForecastSample.Specs.StepDefinitions
 {
     [Binding]
-    public sealed class TemperatureSteps
+    internal class TemperatureSteps
     {
         private Temperature? _actualTemperature;
 
