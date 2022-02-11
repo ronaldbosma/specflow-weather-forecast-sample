@@ -12,13 +12,13 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         [When(@"the temperature is (.*) °C")]
         public void WhenTheTemperatureIsNumberOfDegreesCelsius(int degreesCelsius)
         {
-            _actualTemperature = Temperature.CreateFromDegreesCelsius(degreesCelsius);
+            _actualTemperature = Temperature.FromDegreesCelsius(degreesCelsius);
         }
 
         [When(@"the temperature is (.*) °F")]
         public void WhenTheTemperatureIsF(int degreesFahrenheit)
         {
-            _actualTemperature = Temperature.CreateFromDegreesFahrenheit(degreesFahrenheit);
+            _actualTemperature = Temperature.FromDegreesFahrenheit(degreesFahrenheit);
         }
 
         [Then(@"the temperature is (.*) °F")]
