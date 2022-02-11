@@ -6,7 +6,6 @@ using WeatherForecastSample.WebAPI.Mappers;
 namespace WeatherForecastSample.WebAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private readonly IWeatherForecastService _weatherForecastService;
@@ -16,35 +15,18 @@ namespace WeatherForecastSample.WebAPI.Controllers
             _weatherForecastService = weatherForecastService;
         }
 
-        [HttpGet(Name = "GetWeatherForcastByDate")]
-        public WeatherForecast GetWeatherForecastByDate(DateTime dateTime)
+        [HttpGet("/weatherforecasts/comingweek")]
+        public IEnumerable<WeatherForecast> GetWeatherForcastForComingWeek()
         {
-            var weatherForecast = _weatherForecastService.GetByDate(DateOnly.FromDateTime(dateTime));
-            return weatherForecast.MapToModel();
+            var weatherForecasts = _weatherForecastService.GetForComingWeek();
+            return weatherForecasts.MapToModel();
         }
 
-        //private static readonly string[] Summaries = new[]
-        //{
-        //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        //};
-
-        //private readonly ILogger<WeatherForecastController> _logger;
-
-        //public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
-        //[HttpGet(Name = "GetWeatherForecast")]
-        //public IEnumerable<WeatherForecast> Get()
-        //{
-        //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        //    {
-        //        Date = DateTime.Now.AddDays(index),
-        //        TemperatureC = Random.Shared.Next(-20, 55),
-        //        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        //    })
-        //    .ToArray();
-        //}
+        [HttpGet("/weatherforecasts/date/{date}")]
+        public WeatherForecast GetWeatherForecastByDate(DateTime date)
+        {
+            var weatherForecast = _weatherForecastService.GetByDate(DateOnly.FromDateTime(date));
+            return weatherForecast.MapToModel();
+        }
     }
 }

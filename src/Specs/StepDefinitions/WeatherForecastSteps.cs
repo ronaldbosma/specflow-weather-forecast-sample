@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using FluentAssertions;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using WeatherForecastSample.WebAPI.BusinessLogic;
@@ -12,8 +13,9 @@ namespace WeatherForecastSample.Specs.StepDefinitions
     {
         private readonly WeatherForecastService _weatherForecastService;
         private readonly WeatherForecastDbContext _dbContext;
-
+        
         private WeatherForecast? _actualWeatherForecast;
+        private List<WeatherForecast> _actualWeatherForecasts = new();
 
         public WeatherForecastSteps()
         {
@@ -46,10 +48,22 @@ namespace WeatherForecastSample.Specs.StepDefinitions
             _actualWeatherForecast = _weatherForecastService.GetByDate(date);
         }
 
+        [When(@"I retieve the weather forecasts for the coming week")]
+        public void WhenIRetieveTheWeatherForecastsForTheComingWeek()
+        {
+            _actualWeatherForecasts = _weatherForecastService.GetForComingWeek().ToList();
+        }
+
         [Then(@"the following weather forecast is returned")]
         public void ThenTheFollowingWeatherForecastIsReturned(Table expectedWeatherForecast)
         {
             expectedWeatherForecast.CompareToInstance(_actualWeatherForecast);
+        }
+
+        [Then(@"the following weather forecasts are returned")]
+        public void ThenTheFollowingWeatherForecastsAreReturned(Table expectedWeatherForecasts)
+        {
+            expectedWeatherForecasts.CompareToSet(_actualWeatherForecasts);
         }
     }
 }

@@ -16,5 +16,10 @@ namespace WeatherForecastSample.WebAPI.BusinessLogic
         {
             return _repository.GetByDate(date);
         }
+
+        public IEnumerable<WeatherForecast> GetForComingWeek()
+        {
+            return _repository.GetForComingDays(7);
+        }
     }
 }
