@@ -11,13 +11,29 @@ Scenario: Retrieve weather forecast
     
     Given the following weather forecasts
         | Date             | Weather Type | Minimum Temperature | Maximum Temperature |
-        | 11 February 2021 | Sunny        | 9                   | 12                  |
-        | 12 February 2021 | Cloudy       | 5                   | 10                  |
-        | 13 February 2021 | Rainy        | 3                   | 9                   |
-        | 14 February 2021 | Rainy        | 2                   | 9                   |
-        | 15 February 2021 | Stormy       | -1                  | 2                   |
-        | 16 February 2021 | Snowy        | -4                  | -1                  |
-    When I retieve the weather forecast for '11 February 2021'
+        | 11 February 2022 | Sunny        | 9                   | 12                  |
+        | 12 February 2022 | Cloudy       | 5                   | 10                  |
+        | 13 February 2022 | Rainy        | 3                   | 9                   |
+        | 14 February 2022 | Rainy        | 2                   | 9                   |
+        | 15 February 2022 | Stormy       | -1                  | 2                   |
+        | 16 February 2022 | Snowy        | -4                  | -1                  |
+    When I retieve the weather forecast for 11 February 2022
     Then the following weather forecast is returned
         | Date             | Weather Type | Minimum Temperature | Maximum Temperature |
-        | 11 February 2021 | Sunny        | 9                   | 12                  |
+        | 11 February 2022 | Sunny        | 9                   | 12                  |
+
+
+Scenario: Retrieve weather forecast for today
+    
+    Given the following weather forecasts
+        | Date             | Weather Type | Minimum Temperature | Maximum Temperature |
+        | 11 February 2022 | Sunny        | 9                   | 12                  |
+        | 12 February 2022 | Cloudy       | 5                   | 10                  |
+        | 13 February 2022 | Rainy        | 3                   | 9                   |
+        | 14 February 2022 | Rainy        | 2                   | 9                   |
+        | 15 February 2022 | Stormy       | -1                  | 2                   |
+        | 16 February 2022 | Snowy        | -4                  | -1                  |
+    When I retieve the weather forecast for today
+    Then the following weather forecast is returned
+        | Date             | Weather Type | Minimum Temperature | Maximum Temperature |
+        | 11 February 2022 | Sunny        | 9                   | 12                  |

@@ -13,7 +13,7 @@ namespace WeatherForecastSample.Specs.StepDefinitions
     internal class WeatherForecastSteps
     {
         private readonly WeatherForecastService _weatherForecastService;
-        private WeatherForecastDbContext _dbContext;
+        private readonly WeatherForecastDbContext _dbContext;
 
         private WeatherForecast? _actualWeatherForecast;
 
@@ -26,6 +26,13 @@ namespace WeatherForecastSample.Specs.StepDefinitions
                 new WeatherForecastRepository(_dbContext));
         }
 
+        [BeforeScenario]
+        public void CleanDatabase()
+        {
+            _dbContext.WeatherForecasts.RemoveRange(_dbContext.WeatherForecasts);
+            _dbContext.SaveChanges();
+        }
+
         [Given(@"the following weather forecasts")]
         public void GivenTheFollowingWeatherForecasts(Table table)
         {
@@ -34,7 +41,7 @@ namespace WeatherForecastSample.Specs.StepDefinitions
             _dbContext.SaveChanges();
         }
 
-        [When(@"I retieve the weather forecast for '(.*)'")]
+        [When(@"I retieve the weather forecast for (.*)")]
         public void WhenIRetieveTheWeatherForecastForFebruary(DateOnly date)
         {
             _actualWeatherForecast = _weatherForecastService.GetByDate(date);
