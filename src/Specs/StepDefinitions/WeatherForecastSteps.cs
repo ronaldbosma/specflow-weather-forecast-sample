@@ -42,7 +42,7 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         }
 
         [When(@"I retieve the weather forecast for (.*)")]
-        public void WhenIRetieveTheWeatherForecastForFebruary(DateOnly date)
+        public void WhenIRetieveTheWeatherForecastFor(DateOnly date)
         {
             _actualWeatherForecast = _weatherForecastService.GetByDate(date);
         }
