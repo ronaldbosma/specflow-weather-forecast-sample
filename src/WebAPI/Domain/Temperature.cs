@@ -1,4 +1,6 @@
-﻿namespace WeatherForecastSample.WebAPI.Domain
+﻿using WeatherForecastSample.Shared.Extensions;
+
+namespace WeatherForecastSample.WebAPI.Domain
 {
     internal record Temperature
     {
@@ -14,17 +16,13 @@
         public static Temperature CreateFromDegreesCelsius(int degreesCelsius)
         {
             decimal degreesFahrenheit = ((decimal)degreesCelsius * 9 / 5) + 32;
-            int degreesFahrenheitRoundedOf = (int)Math.Round(degreesFahrenheit, 0, MidpointRounding.AwayFromZero);
-
-            return new(degreesCelsius, degreesFahrenheitRoundedOf);
+            return new(degreesCelsius, degreesFahrenheit.RoundToWholeNumber());
         }
 
         public static Temperature CreateFromDegreesFahrenheit(int degreesFahrenheit)
         {
             decimal degreesCelsius = ((decimal)degreesFahrenheit - 32) * 5 / 9;
-            int degreesCelsiusRoundedOf = (int)Math.Round(degreesCelsius, 0, MidpointRounding.AwayFromZero);
-
-            return new(degreesCelsiusRoundedOf, degreesFahrenheit);
+            return new(degreesCelsius.RoundToWholeNumber(), degreesFahrenheit);
         }
     }
 }
