@@ -10,9 +10,9 @@
 }
 else
 {
-    <div class="row m-3">
+    <div class="row m-3" style="min-height: 300px;">
         <div class="col">
-            <img src="images/@(SelectedWeatherForecast!.WeatherType).svg" alt="@SelectedWeatherForecast!.WeatherType" />
+            <img src="images/@(SelectedWeatherForecast!.WeatherType).svg" alt="@SelectedWeatherForecast!.WeatherType" class="align-middle" />
         </div>
             
         <div class="col-md-8 col-sm-8 col-xs-12 text-primary p-3">
@@ -39,7 +39,9 @@ else
         <ul class="list-group list-group-horizontal">
             @foreach (var weatherForecast in WeatherForecasts)
             {
-                <li class="list-group-item list-group-item-action flex-column align-items-center text-center active">
+                <li class="list-group-item list-group-item-action flex-column align-items-center text-center active" style="cursor: pointer;" 
+                    @onclick="@(async () => await SelectWeatherForecastAsync(weatherForecast.Date))">
+                    
                     <h5 class="text-light fw-bold">@weatherForecast.Date.ToString("ddd")</h5>
                     <p>@weatherForecast.Date.ToString("d MMM")</p>
                     

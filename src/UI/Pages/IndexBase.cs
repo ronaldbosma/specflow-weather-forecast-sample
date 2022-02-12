@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using WeatherForecastSample.Shared.Models;
 using WeatherForecastSample.UI.Apis;
 
@@ -15,8 +16,17 @@ namespace WeatherForecastSample.UI.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            WeatherForecasts = await Api.GetWeatherForecastForComingWeekAsync();
-            SelectedWeatherForecast = WeatherForecasts.FirstOrDefault();
+            WeatherForecasts = (await Api.GetWeatherForecastForComingWeekAsync()).OrderBy(wf => wf.Date);
+
+            if (WeatherForecasts.Any())
+            {
+                await SelectWeatherForecastAsync(WeatherForecasts.First().Date);
+            }
+        }
+
+        public async Task SelectWeatherForecastAsync(DateTime selectedDate)
+        {
+            SelectedWeatherForecast = await Api.GetWeatherForecastByDateAsync(selectedDate);
         }
     }
 }
