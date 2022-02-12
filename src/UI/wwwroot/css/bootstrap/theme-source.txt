@@ -1,0 +1,2 @@
+Theme source: https://bootswatch.com/cerulean/
+License: https://raw.githubusercontent.com/thomaspark/bootswatch/v5/LICENSE
