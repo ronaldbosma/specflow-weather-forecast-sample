@@ -11,12 +11,9 @@ Scenario: Retrieve weather forecast
     
     Given the following weather forecasts
         | Date             | Weather Type  | Minimum Temperature | Maximum Temperature |
+        | 11 February 2022 | Sunny         | 12                  | 17                  |
         | 12 February 2022 | Sunny         | 9                   | 12                  |
         | 13 February 2022 | PartlyClouded | 5                   | 10                  |
-        | 14 February 2022 | Cloudy        | 3                   | 9                   |
-        | 15 February 2022 | Rainy         | 2                   | 9                   |
-        | 16 February 2022 | Stormy        | -1                  | 2                   |
-        | 17 February 2022 | Snowy         | -4                  | -1                  |
     When I retrieve the weather forecast for 12 February 2022
     Then the following weather forecast is returned
         | Date             | Weather Type | Minimum Temperature | Maximum Temperature |
@@ -27,12 +24,9 @@ Scenario: Retrieve weather forecast for today
     
     Given the following weather forecasts
         | Date             | Weather Type  | Minimum Temperature | Maximum Temperature |
+        | 11 February 2022 | Sunny         | 12                  | 17                  |
         | 12 February 2022 | Sunny         | 9                   | 12                  |
         | 13 February 2022 | PartlyClouded | 5                   | 10                  |
-        | 14 February 2022 | Cloudy        | 3                   | 9                   |
-        | 15 February 2022 | Rainy         | 2                   | 9                   |
-        | 16 February 2022 | Stormy        | -1                  | 2                   |
-        | 17 February 2022 | Snowy         | -4                  | -1                  |
     When I retrieve the weather forecast for today
     Then the following weather forecast is returned
         | Property            | Value            |
