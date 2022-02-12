@@ -14,6 +14,11 @@ Source: https://freesvg.org/vector-clip-art-of-weather-forecast-color-symbol-for
 License: https://creativecommons.org/licenses/publicdomain/
 Date: 12 Februari 2022
 
+Raindrop.svg
+Source: https://freesvg.org/water-drop-vector-graphics
+License: https://creativecommons.org/licenses/publicdomain/
+Date: 12 Februari 2022
+
 Rainy.svg
 Source: https://freesvg.org/vector-image-of-weather-forecast-color-symbol-for-rainy-sky
 License: https://creativecommons.org/licenses/publicdomain/
@@ -31,5 +36,15 @@ Date: 12 Februari 2022
 
 Sunny.svg
 Source: https://freesvg.org/vector-image-of-weather-forecast-color-symbol-for-sunny-sky
+License: https://creativecommons.org/licenses/publicdomain/
+Date: 12 Februari 2022
+
+Thermometer.svg
+Source: https://freesvg.org/pixzain-thermometer
+License: https://creativecommons.org/licenses/publicdomain/
+Date: 12 Februari 2022
+
+Wind.svg
+Source: https://freesvg.org/abstract-wind-symbol
 License: https://creativecommons.org/licenses/publicdomain/
 Date: 12 Februari 2022
