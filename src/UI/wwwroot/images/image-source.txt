@@ -1,1 +1,35 @@
-jumbotron.jpg		Foto door Brett Sayles via Pexels		https://www.pexels.com/nl-nl/foto/wolken-1431822/
+jumbotron.jpg
+Source: https://www.pexels.com/nl-nl/foto/wolken-1431822/
+Creator: Foto door Brett Sayles via Pexels
+License: https://www.pexels.com/nl-nl/license/
+Date: 12 Februari 2022
+
+Cloudy.svg
+Source: https://freesvg.org/vector-illustration-of-weather-forecast-color-symbol-for-cloudy-sky
+License: https://creativecommons.org/licenses/publicdomain/
+Date: 12 Februari 2022
+
+PartlyClouded.svg
+Source: https://freesvg.org/vector-clip-art-of-weather-forecast-color-symbol-for-partly-cloudy-sky
+License: https://creativecommons.org/licenses/publicdomain/
+Date: 12 Februari 2022
+
+Rainy.svg
+Source: https://freesvg.org/vector-image-of-weather-forecast-color-symbol-for-rainy-sky
+License: https://creativecommons.org/licenses/publicdomain/
+Date: 12 Februari 2022
+
+Snowy.svg
+Source: https://freesvg.org/dark-blue-weather-forecast-icon-for-snow-vector-illustration
+License: https://creativecommons.org/licenses/publicdomain/
+Date: 12 Februari 2022
+
+Stormy.svg
+Source: https://freesvg.org/dark-blue-overcloud-thunder-sign-vector-clip-art
+License: https://creativecommons.org/licenses/publicdomain/
+Date: 12 Februari 2022
+
+Sunny.svg
+Source: https://freesvg.org/vector-image-of-weather-forecast-color-symbol-for-sunny-sky
+License: https://creativecommons.org/licenses/publicdomain/
+Date: 12 Februari 2022
