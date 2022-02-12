@@ -1,0 +1,6 @@
+﻿<WeatherTypeImage WeatherType="@WeatherForecast.WeatherType" Size="50" />
+
+@code {
+    [Parameter, EditorRequired]
+    public WeatherForecast WeatherForecast { get; set; } = null!;
+}

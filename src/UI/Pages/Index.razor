@@ -1,5 +1,5 @@
 ﻿@page "/"
-@using WeatherForecastSample.Shared.Models
+@inherits IndexBase
 
 <PageTitle>Weather Forecast</PageTitle>
 
@@ -12,9 +12,15 @@
 </div>
 
 <div class="row">
-    <WeatherTypeImage WeatherType="@WeatherType.Cloudy" Size="50" />
-    <WeatherTypeImage WeatherType="@WeatherType.Rainy" Size="50" />
-    <WeatherTypeImage WeatherType="@WeatherType.Snowy" Size="50" />
-    <WeatherTypeImage WeatherType="@WeatherType.Stormy" Size="50" />
-    <WeatherTypeImage WeatherType="@WeatherType.Sunny" Size="50" />
+    @if (!WeatherForecasts.Any())
+    {
+        <span>Loading...</span>
+    }
+    else
+    {
+        foreach (var weatherForecast in WeatherForecasts)
+        {
+            <WeatherForecastCard WeatherForecast="@weatherForecast" />
+        }
+    }
 </div>
