@@ -2,23 +2,12 @@
     <div class="container">
         <span>
             Temperature
-            <div class="btn-group" role="group" aria-label="Select unit of temperature">
+            <span class="btn-group" role="group" aria-label="Select unit of temperature">
                 <input type="radio" class="btn-check" name="btnradio" id="btnCelsius" autocomplete="off" checked="">
                 <label class="btn btn-secondary btn-outline-primary" for="btnCelsius">°C</label>
                 <input type="radio" class="btn-check" name="btnradio" id="btnFahrenheit" autocomplete="off" checked="">
                 <label class="btn btn-secondary btn-outline-primary" for="btnFahrenheit">°F</label>
-            </div>
+            </span>
         </span>
     </div>
 </nav>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
