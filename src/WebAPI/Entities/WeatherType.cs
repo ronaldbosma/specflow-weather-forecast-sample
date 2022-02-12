@@ -3,9 +3,10 @@
     public enum WeatherType
     {
         Cloudy = 0,
-        Rainy = 1,
-        Snowy = 2,
-        Stormy = 3,
-        Sunny = 4
+        PartlyClouded = 1,
+        Rainy = 2,
+        Snowy = 3,
+        Stormy = 4,
+        Sunny = 5
     }
 }
