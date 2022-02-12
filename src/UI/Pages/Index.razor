@@ -4,34 +4,40 @@
 <PageTitle>Weather Forecast</PageTitle>
 
 
-<div class="row">
-    <div class="col-12">
-        <h1>12 Februari 2021</h1>
+@if (!WeatherForecasts.Any() && SelectedWeatherForecast == null)
+{
+    <span>Loading...</span>
+}
+else
+{
+    <div  style="margin: 25px;">
+        <h2>@SelectedWeatherForecast!.Date.ToString("D")</h2>
 
+        <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+                <WeatherTypeImage WeatherType="@SelectedWeatherForecast!.WeatherType" Size="150" />
+            </div>
+            
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                Minimum Temperature: @SelectedWeatherForecast.MinimumTemperature <br />
+                Maximum Temperature: @SelectedWeatherForecast.MaximumTemperature
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="row">
-    @if (!WeatherForecasts.Any())
-    {
-        <span>Loading...</span>
-    }
-    else
-    {
+    <div class="row">
         <ul class="list-group list-group-horizontal">
             @foreach (var weatherForecast in WeatherForecasts)
             {
-                <li class="list-group-item list-group-item-action flex-column align-items-start active">
-                    <div style="text-align: center;">
-                        <p><b>@weatherForecast.Date.ToString("ddd")</b></p>
-                        <p>@weatherForecast.Date.ToString("d MMM")</p>
+                <li class="list-group-item list-group-item-action flex-column align-items-center text-center active">
+                    <p><b>@weatherForecast.Date.ToString("ddd")</b></p>
+                    <p>@weatherForecast.Date.ToString("d MMM")</p>
 
-                        <WeatherTypeImage WeatherType="@weatherForecast.WeatherType" Size="50" />
+                    <WeatherTypeImage WeatherType="@weatherForecast.WeatherType" Size="50" />
 
-                        <p>@weatherForecast.MinimumTemperature / @weatherForecast.MaximumTemperature</p>
-                    </div>
+                    <p>@weatherForecast.MinimumTemperature / @weatherForecast.MaximumTemperature</p>
                 </li>
             }
         </ul>
-    }
-</div>
+    </div>
+}

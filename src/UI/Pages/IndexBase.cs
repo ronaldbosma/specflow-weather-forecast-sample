@@ -11,9 +11,12 @@ namespace WeatherForecastSample.UI.Pages
 
         public IEnumerable<WeatherForecast> WeatherForecasts { get; set; } = new List<WeatherForecast>();
 
+        public WeatherForecast? SelectedWeatherForecast { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             WeatherForecasts = await Api.GetWeatherForecastForComingWeekAsync();
+            SelectedWeatherForecast = WeatherForecasts.FirstOrDefault();
         }
     }
 }
