@@ -12,6 +12,11 @@ namespace WeatherForecastSample.WebAPI.DataAccess.Configuration
             builder.HasIndex(wf => wf.Date).IsUnique();
             builder.Property(wf => wf.Date).HasConversion<DateOnlyConverter, DateOnlyComparer>();
 
+            AddTestData(builder);
+        }
+
+        private static void AddTestData(EntityTypeBuilder<WeatherForecast> builder)
+        {
             builder.HasData(CreateWeatherForecast(1, DateTime.Today.AddDays(-1), WeatherType.Sunny, 12, 17));
             builder.HasData(CreateWeatherForecast(2, DateTime.Today, WeatherType.Sunny, 9, 12));
             builder.HasData(CreateWeatherForecast(3, DateTime.Today.AddDays(1), WeatherType.PartlyClouded, 5, 10));
