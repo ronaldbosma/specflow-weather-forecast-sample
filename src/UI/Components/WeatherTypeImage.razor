@@ -1,0 +1,11 @@
+﻿@using WeatherForecastSample.Shared.Models
+
+<img src="images/@(WeatherType.ToString()).svg" height="@Size" width="@Size" alt="@(WeatherType.ToString())" />
+
+@code {
+    [Parameter]
+    public WeatherType WeatherType { get; set; } = WeatherType.Sunny;
+
+    [Parameter]
+    public int Size { get; set; } = 50;
+}

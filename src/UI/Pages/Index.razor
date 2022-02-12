@@ -1,9 +1,20 @@
 ﻿@page "/"
+@using WeatherForecastSample.Shared.Models
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Weather Forecast</PageTitle>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<div class="row">
+    <div class="col-12">
+        <h1>12 Februari 2021</h1>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    </div>
+</div>
+
+<div class="row">
+    <WeatherTypeImage WeatherType="@WeatherType.Cloudy" Size="50" />
+    <WeatherTypeImage WeatherType="@WeatherType.Rainy" Size="50" />
+    <WeatherTypeImage WeatherType="@WeatherType.Snowy" Size="50" />
+    <WeatherTypeImage WeatherType="@WeatherType.Stormy" Size="50" />
+    <WeatherTypeImage WeatherType="@WeatherType.Sunny" Size="50" />
+</div>
