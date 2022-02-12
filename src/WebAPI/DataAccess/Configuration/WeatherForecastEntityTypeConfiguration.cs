@@ -14,8 +14,8 @@ namespace WeatherForecastSample.WebAPI.DataAccess.Configuration
 
             builder.HasData(CreateWeatherForecast(1, DateTime.Today.AddDays(-1), WeatherType.Sunny, 12, 17));
             builder.HasData(CreateWeatherForecast(2, DateTime.Today, WeatherType.Sunny, 9, 12));
-            builder.HasData(CreateWeatherForecast(3, DateTime.Today.AddDays(1), WeatherType.Cloudy, 5, 10));
-            builder.HasData(CreateWeatherForecast(4, DateTime.Today.AddDays(2), WeatherType.Rainy, 3, 9));
+            builder.HasData(CreateWeatherForecast(3, DateTime.Today.AddDays(1), WeatherType.PartlyClouded, 5, 10));
+            builder.HasData(CreateWeatherForecast(4, DateTime.Today.AddDays(2), WeatherType.Cloudy, 3, 9));
             builder.HasData(CreateWeatherForecast(5, DateTime.Today.AddDays(3), WeatherType.Rainy, 2, 9));
             builder.HasData(CreateWeatherForecast(6, DateTime.Today.AddDays(4), WeatherType.Stormy, -1, 2));
             builder.HasData(CreateWeatherForecast(7, DateTime.Today.AddDays(5), WeatherType.Snowy, -4, -1));
