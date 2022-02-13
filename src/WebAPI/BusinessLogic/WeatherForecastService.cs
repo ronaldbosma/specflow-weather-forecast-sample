@@ -19,7 +19,10 @@ namespace WeatherForecastSample.WebAPI.BusinessLogic
 
         public IEnumerable<WeatherForecast> GetForComingWeek()
         {
-            return _repository.GetForComingDays(7);
+            var today = DateOnly.FromDateTime(DateTime.Today);
+            var sevenDaysFromToday = today.AddDays(7);
+
+            return _repository.GetForDateRange(today, sevenDaysFromToday);
         }
     }
 }

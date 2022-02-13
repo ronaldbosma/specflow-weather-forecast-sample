@@ -16,12 +16,9 @@ namespace WeatherForecastSample.WebAPI.DataAccess
             return _context.WeatherForecasts.Single(wf => wf.Date == date);
         }
 
-        public IEnumerable<WeatherForecast> GetForComingDays(int numberOfComingDays)
+        public IEnumerable<WeatherForecast> GetForDateRange(DateOnly fromDate, DateOnly untilDate)
         {
-            var today = DateOnly.FromDateTime(DateTime.Today);
-            var lastDay = today.AddDays(numberOfComingDays);
-
-            return _context.WeatherForecasts.Where(wf => wf.Date >= today && wf.Date < lastDay);
+            return _context.WeatherForecasts.Where(wf => wf.Date >= fromDate && wf.Date < untilDate);
         }
     }
 }
