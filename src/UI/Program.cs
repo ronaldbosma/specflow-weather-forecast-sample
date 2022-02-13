@@ -19,7 +19,7 @@ builder.Services.AddRefitClient<IAccountApi>()
 
 builder.Services.AddTransient<AuthenticationHeaderHandler>();
 builder.Services.AddRefitClient<IWeatherForecastApi>()
-                .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7288"))
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7288/api"))
                 .SetHandlerLifetime(TimeSpan.FromMinutes(2))
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
 
