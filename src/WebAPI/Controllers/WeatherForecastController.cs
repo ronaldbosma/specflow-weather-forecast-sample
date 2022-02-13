@@ -16,17 +16,17 @@ namespace WeatherForecastSample.WebAPI.Controllers
         }
 
         [HttpGet("/weatherforecasts/comingweek")]
-        public IEnumerable<WeatherForecast> GetWeatherForcastForComingWeek()
+        public IEnumerable<WeatherForecastSummary> GetWeatherForcastForComingWeek()
         {
             var weatherForecasts = _weatherForecastService.GetForComingWeek();
-            return weatherForecasts.MapToModel();
+            return weatherForecasts.MapToSummaries();
         }
 
         [HttpGet("/weatherforecasts/date/{date}")]
-        public WeatherForecast GetWeatherForecastByDate(DateTime date)
+        public WeatherForecastSummary GetWeatherForecastByDate(DateTime date)
         {
             var weatherForecast = _weatherForecastService.GetByDate(DateOnly.FromDateTime(date));
-            return weatherForecast.MapToModel();
+            return weatherForecast.MapToSummary();
         }
     }
 }

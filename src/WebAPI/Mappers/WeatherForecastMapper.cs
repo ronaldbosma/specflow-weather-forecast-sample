@@ -4,19 +4,18 @@ namespace WeatherForecastSample.WebAPI.Mappers
 {
     internal static class WeatherForecastMapper
     {
-        public static IEnumerable<Shared.Models.WeatherForecast> MapToModel(this IEnumerable<WeatherForecast> source)
+        public static IEnumerable<Shared.Models.WeatherForecastSummary> MapToSummaries(this IEnumerable<WeatherForecast> source)
         {
-            return source.Select(s => s.MapToModel());
+            return source.Select(s => s.MapToSummary());
         }
 
-        public static Shared.Models.WeatherForecast MapToModel(this WeatherForecast source)
+        public static Shared.Models.WeatherForecastSummary MapToSummary(this WeatherForecast source)
         {
-            return new Shared.Models.WeatherForecast
+            return new Shared.Models.WeatherForecastSummary
             {
                 Id = source.Id,
                 Date = source.Date.ToDateTime(TimeOnly.MinValue),
                 MaximumTemperature = source.MaximumTemperature,
-                MinimumTemperature = source.MinimumTemperature,
                 WeatherType = (Shared.Models.WeatherType)source.WeatherType
             };
         }

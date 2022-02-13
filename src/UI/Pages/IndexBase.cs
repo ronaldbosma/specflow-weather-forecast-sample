@@ -10,9 +10,9 @@ namespace WeatherForecastSample.UI.Pages
         [Inject]
         public IWeatherForecastApi Api { get; set; } = null!;
 
-        public IEnumerable<WeatherForecast> WeatherForecasts { get; set; } = new List<WeatherForecast>();
+        public IEnumerable<WeatherForecastSummary> WeatherForecasts { get; set; } = new List<WeatherForecastSummary>();
 
-        public WeatherForecast? SelectedWeatherForecast { get; set; }
+        public WeatherForecastSummary? SelectedWeatherForecast { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
