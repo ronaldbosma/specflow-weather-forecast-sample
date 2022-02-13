@@ -13,7 +13,6 @@ namespace WeatherForecastSample.WebAPI.Mappers
         {
             return new Shared.Models.WeatherForecastSummary
             {
-                Id = source.Id,
                 Date = source.Date.ToDateTime(TimeOnly.MinValue),
                 MaximumTemperature = source.MaximumTemperature,
                 WeatherType = (Shared.Models.WeatherType)source.WeatherType
