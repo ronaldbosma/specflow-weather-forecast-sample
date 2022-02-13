@@ -10,6 +10,10 @@ The formula to convert Celsius to Fahrenheit is:
 The formula to convert Fahrenheit to Celsius is:
 	°C = (°F - 32) * 5/9
 
+37 °C is equivalent to 98.6 °F, but we only use whole numbers for the temperature.
+We round to the nearest number, and when a number is halfway between two others,
+it's rounded toward the nearest number that's away from zero.
+
 
 Scenario Outline: Convert Celsius to Fahrenheit
 
