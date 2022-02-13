@@ -16,8 +16,11 @@
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
+            var jwtSettings = Configuration.GetSection("JWTSettings");
+            services.AddAuthentication(jwtSettings);
+
             services.AddWeatherForecastDependencies();
-            services.AddWeatherForecastDbContext().EnsureDatabaseExists();
+            services.AddWeatherForecastDbContext();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,6 +36,7 @@
             app.UseRouting();
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             //DON'T USE IN PRODUCTION: this will allow the Blazor UI to call the Web API

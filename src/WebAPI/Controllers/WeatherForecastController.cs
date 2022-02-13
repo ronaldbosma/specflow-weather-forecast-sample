@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WeatherForecastSample.Shared.Models;
 using WeatherForecastSample.WebAPI.BusinessLogic;
@@ -6,6 +7,7 @@ using WeatherForecastSample.WebAPI.Mappers;
 namespace WeatherForecastSample.WebAPI.Controllers
 {
     [ApiController]
+    [Authorize]
     public class WeatherForecastController : ControllerBase
     {
         private readonly IWeatherForecastService _weatherForecastService;
