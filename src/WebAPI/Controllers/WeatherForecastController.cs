@@ -23,10 +23,10 @@ namespace WeatherForecastSample.WebAPI.Controllers
         }
 
         [HttpGet("/weatherforecasts/date/{date}")]
-        public WeatherForecastSummary GetWeatherForecastByDate(DateTime date)
+        public WeatherForecastDetails GetWeatherForecastByDate(DateTime date)
         {
             var weatherForecast = _weatherForecastService.GetByDate(DateOnly.FromDateTime(date));
-            return weatherForecast.MapToSummary();
+            return weatherForecast.MapToDetails();
         }
     }
 }

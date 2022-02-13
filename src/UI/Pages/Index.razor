@@ -23,15 +23,15 @@ else
             
             <div class="mt-3 align-middle">
                 <img src="images/Thermometer.svg" alt="thermometer" width="25" height="25" />
-                @SelectedWeatherForecast.MaximumTemperature °C @*/ @SelectedWeatherForecast.MinimumTemperature °C*@
+                @SelectedWeatherForecast.MaximumTemperature °C / @SelectedWeatherForecast.MinimumTemperature °C
             </div>
             <div class="mt-3 align-middle">
                 <img src="images/Raindrop.svg" alt="raindrop" width="25" height="25" />
-                0.0mm / 0%
+                @(SelectedWeatherForecast.NumberOfMillimetresRain)mm / @(SelectedWeatherForecast.PercentageOfChanceOfRain)%
             </div>
             <div class="mt-3 align-middle">
                 <img src="images/Wind.svg" alt="wind" width="25" height="25" />
-                NW5
+                @SelectedWeatherForecast.WindDirection@SelectedWeatherForecast.WindStrength
             </div>
         </div>
     </div>

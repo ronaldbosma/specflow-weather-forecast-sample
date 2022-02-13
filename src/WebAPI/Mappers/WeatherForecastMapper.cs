@@ -14,8 +14,24 @@ namespace WeatherForecastSample.WebAPI.Mappers
             return new Shared.Models.WeatherForecastSummary
             {
                 Date = source.Date.ToDateTime(TimeOnly.MinValue),
+                WeatherType = (Shared.Models.WeatherType)source.WeatherType,
+                MaximumTemperature = source.MaximumTemperature
+            };
+        }
+
+        public static Shared.Models.WeatherForecastDetails MapToDetails(this WeatherForecast source)
+        {
+            return new Shared.Models.WeatherForecastDetails
+            {
+                Id = source.Id,
+                Date = source.Date.ToDateTime(TimeOnly.MinValue),
+                WeatherType = (Shared.Models.WeatherType)source.WeatherType,
                 MaximumTemperature = source.MaximumTemperature,
-                WeatherType = (Shared.Models.WeatherType)source.WeatherType
+                MinimumTemperature = source.MinimumTemperature,
+                NumberOfMillimetresRain = source.NumberOfMillimetresRain,
+                PercentageOfChanceOfRain = source.PercentageOfChanceOfRain,
+                WindDirection = (Shared.Models.WindDirection)source.WindDirection,
+                WindStrength = source.WindStrength
             };
         }
     }

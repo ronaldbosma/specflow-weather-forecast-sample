@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using WeatherForecastSample.Shared.Models;
 using WeatherForecastSample.UI.Apis;
 
@@ -12,7 +11,7 @@ namespace WeatherForecastSample.UI.Pages
 
         public IEnumerable<WeatherForecastSummary> WeatherForecasts { get; set; } = new List<WeatherForecastSummary>();
 
-        public WeatherForecastSummary? SelectedWeatherForecast { get; set; }
+        public WeatherForecastDetails? SelectedWeatherForecast { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

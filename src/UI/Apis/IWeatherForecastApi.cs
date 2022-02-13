@@ -10,6 +10,6 @@ namespace WeatherForecastSample.UI.Apis
         Task<IEnumerable<WeatherForecastSummary>> GetWeatherForecastForComingWeekAsync();
 
         [Get("/weatherforecasts/date/{date}")]
-        Task<WeatherForecastSummary> GetWeatherForecastByDateAsync([Query(Format = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'")] DateTime date);
+        Task<WeatherForecastDetails> GetWeatherForecastByDateAsync([Query(Format = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'")] DateTime date);
     }
 }
