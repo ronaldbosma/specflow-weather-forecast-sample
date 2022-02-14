@@ -1,6 +1,6 @@
 ﻿using WeatherForecastSample.WebAPI.Entities;
 
-namespace WeatherForecastSample.WebAPI.Mappers
+namespace WeatherForecastSample.WebAPI.Controllers.Mappers
 {
     public static class UserSettingsMapper
     {

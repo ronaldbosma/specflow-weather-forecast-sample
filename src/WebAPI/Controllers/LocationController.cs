@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WeatherForecastSample.Shared.Models;
+using WeatherForecastSample.WebAPI.Controllers.Mappers;
 using WeatherForecastSample.WebAPI.DataAccess;
-using WeatherForecastSample.WebAPI.Mappers;
 
 namespace WeatherForecastSample.WebAPI.Controllers
 {
