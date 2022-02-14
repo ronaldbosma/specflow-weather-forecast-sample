@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using FluentAssertions;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using WeatherForecastSample.WebAPI.BusinessLogic;
 using WeatherForecastSample.WebAPI.DataAccess;
 using WeatherForecastSample.WebAPI.Entities;
+using WeatherForecastSample.WebAPI.ApplicationLogic;
 
 namespace WeatherForecastSample.Specs.StepDefinitions
 {

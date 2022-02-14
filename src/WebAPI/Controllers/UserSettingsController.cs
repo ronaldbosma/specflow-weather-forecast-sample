@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WeatherForecastSample.Shared.Models;
-using WeatherForecastSample.WebAPI.BusinessLogic;
+using WeatherForecastSample.WebAPI.ApplicationLogic;
 using WeatherForecastSample.WebAPI.Controllers.Mappers;
 
 namespace WeatherForecastSample.WebAPI.Controllers

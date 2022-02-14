@@ -3,7 +3,7 @@ using System.Security.Claims;
 using WeatherForecastSample.WebAPI.DataAccess;
 using WeatherForecastSample.WebAPI.Entities;
 
-namespace WeatherForecastSample.WebAPI.BusinessLogic
+namespace WeatherForecastSample.WebAPI.ApplicationLogic
 {
     internal class UserSettingsService : IUserSettingsService
     {
