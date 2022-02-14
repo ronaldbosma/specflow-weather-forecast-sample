@@ -17,6 +17,8 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
 
                 // Seed test data
                 new IdentityUserSeeder(context, userManager).SeedData();
+                new LocationSeeder(context).SeedData();
+                new UserSettingsSeeder(context, userManager).SeedData();
                 new WeatherForecastSeeder(context).SeedData();
             }
 

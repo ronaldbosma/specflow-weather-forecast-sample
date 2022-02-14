@@ -21,5 +21,9 @@ namespace WeatherForecastSample.WebAPI.DataAccess
         }
 
         public DbSet<WeatherForecast> WeatherForecasts => Set<WeatherForecast>();
+
+        public DbSet<Location> Locations => Set<Location>();
+
+        public DbSet<UserSettings> UserSettings => Set<UserSettings>();
     }
 }
