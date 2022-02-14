@@ -15,22 +15,18 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
 
         public void SeedData()
         {
-            AddIdentityUser("john@example.org", "P@ssw0rd");
-            AddIdentityUser("jane@example.org", "P@ssw0rd");
+            AddIdentityUser("John", "P@ssw0rd");
+            AddIdentityUser("Jane", "P@ssw0rd");
 
             _context.SaveChanges();
         }
 
-        private void AddIdentityUser(string email, string password)
+        private void AddIdentityUser(string username, string password)
         {
-            var userDoesNotExist = !_context.Users.Any(u => u.UserName == email);
+            var userDoesNotExist = !_context.Users.Any(u => u.UserName == username);
             if (userDoesNotExist)
             {
-                var user = new IdentityUser
-                {
-                    UserName = email,
-                    Email = email
-                };
+                var user = new IdentityUser(username);
                 _userManager.CreateAsync(user, password).Wait();
             }
         }

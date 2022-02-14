@@ -6,7 +6,7 @@ namespace WeatherForecastSample.UI.Pages
 {
     public class LoginBase : ComponentBase
     {
-        public LoginRequest LoginRequest { get; init; } = new LoginRequest { Email = "john@example.org", Password = "P@ssw0rd" };
+        public LoginRequest LoginRequest { get; init; } = new LoginRequest { Username = "John", Password = "P@ssw0rd" };
 
         [Inject]
         public IAuthenticationService AuthenticationService { get; set; } = null!;

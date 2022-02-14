@@ -31,9 +31,9 @@ namespace WeatherForecastSample.UI.Authentication
             return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(JwtParser.ParseClaimsFromJwt(token), Constants.AuthenticationType)));
         }
 
-        public void NotifyUserAuthentication(string email)
+        public void NotifyUserAuthentication(string username)
         {
-            var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, email) }, Constants.AuthenticationType));
+            var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, username) }, Constants.AuthenticationType));
             var authenticationState = Task.FromResult(new AuthenticationState(authenticatedUser));
             NotifyAuthenticationStateChanged(authenticationState);
         }

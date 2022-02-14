@@ -31,7 +31,7 @@ namespace WeatherForecastSample.UI.Authentication
             }
 
             await _localStorage.SetItemAsync(Constants.AuthenticationTokenStoreKey, response.Content.Token);
-            _authenticationStateProvider.NotifyUserAuthentication(request.Email);
+            _authenticationStateProvider.NotifyUserAuthentication(request.Username);
 
             return new LoginResponse {  IsAuthenticationSuccessful = true };
         }
