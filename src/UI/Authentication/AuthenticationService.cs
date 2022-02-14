@@ -8,13 +8,13 @@ namespace WeatherForecastSample.UI.Authentication
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IAccountApi _accountApi;
-        private readonly AuthenticationStateProvider _authStateProvider;
+        private readonly CustomAuthenticationStateProvider _authenticationStateProvider;
         private readonly ILocalStorageService _localStorage;
 
-        public AuthenticationService(IAccountApi accountApi, AuthenticationStateProvider authStateProvider, ILocalStorageService localStorage)
+        public AuthenticationService(IAccountApi accountApi, AuthenticationStateProvider authenticationStateProvider, ILocalStorageService localStorage)
         {
             _accountApi = accountApi;
-            _authStateProvider = authStateProvider;
+            _authenticationStateProvider = (CustomAuthenticationStateProvider)authenticationStateProvider;
             _localStorage = localStorage;
         }
 
@@ -31,7 +31,7 @@ namespace WeatherForecastSample.UI.Authentication
             }
 
             await _localStorage.SetItemAsync(Constants.AuthenticationTokenStoreKey, response.Content.Token);
-            ((CustomAuthenticationStateProvider)_authStateProvider).NotifyUserAuthentication(request.Email);
+            _authenticationStateProvider.NotifyUserAuthentication(request.Email);
 
             return new LoginResponse {  IsAuthenticationSuccessful = true };
         }
@@ -39,7 +39,7 @@ namespace WeatherForecastSample.UI.Authentication
         public async Task LogoutAsync()
         {
             await _localStorage.RemoveItemAsync(Constants.AuthenticationTokenStoreKey);
-            ((CustomAuthenticationStateProvider)_authStateProvider).NotifyUserLogout();
+            _authenticationStateProvider.NotifyUserLogout();
         }
     }
 }
