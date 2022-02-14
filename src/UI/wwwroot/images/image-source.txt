@@ -1,6 +1,6 @@
 gear.svg
 Source: https://freesvg.org/1336392323
-License: https://www.pexels.com/nl-nl/license/
+License: https://creativecommons.org/licenses/publicdomain/
 Date: 14 Februari 2022
 
 jumbotron.jpg
