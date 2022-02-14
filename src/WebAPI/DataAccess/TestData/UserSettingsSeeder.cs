@@ -25,14 +25,19 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
         private void AddUserSettings(string username, TemperatureUnit temperatureUnit, string locationName)
         {
             var user = _userManager.FindByNameAsync(username).Result;
-            var location = _context.Locations.Single(l => l.Name == locationName);
 
-            _context.UserSettings.Add(new UserSettings
+            var userSettingsDoNotExist = !_context.UserSettings.Any(us => us.UserId == user.Id);
+            if (userSettingsDoNotExist)
             {
-                UserId = user.Id,
-                TemperatureUnit = temperatureUnit,
-                LocationId = location.Id
-            });
+                var location = _context.Locations.Single(l => l.Name == locationName);
+
+                _context.UserSettings.Add(new UserSettings
+                {
+                    UserId = user.Id,
+                    TemperatureUnit = temperatureUnit,
+                    LocationId = location.Id
+                });
+            }
         }
     }
 }

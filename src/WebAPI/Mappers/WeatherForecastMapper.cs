@@ -6,7 +6,7 @@ namespace WeatherForecastSample.WebAPI.Mappers
     {
         public static IEnumerable<Shared.Models.WeatherForecastSummary> MapToSummaries(this IEnumerable<WeatherForecast> source)
         {
-            return source.Select(s => s.MapToSummary());
+            return source.Select(MapToSummary);
         }
 
         public static Shared.Models.WeatherForecastSummary MapToSummary(this WeatherForecast source)

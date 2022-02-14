@@ -4,12 +4,17 @@ namespace WeatherForecastSample.WebAPI.Mappers
 {
     internal static class LocationMapper
     {
-        public static Shared.Models.Location MapToModel(this Location location)
+        public static IEnumerable<Shared.Models.Location> MapToModel(this IEnumerable<Location> source)
+        {
+            return source.Select(MapToModel);
+        }
+
+        public static Shared.Models.Location MapToModel(this Location source)
         {
             return new Shared.Models.Location
             {
-                Id = location.Id,
-                Name = location.Name
+                Id = source.Id,
+                Name = source.Name
             };
         }
     }

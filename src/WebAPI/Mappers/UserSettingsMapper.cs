@@ -4,12 +4,12 @@ namespace WeatherForecastSample.WebAPI.Mappers
 {
     public static class UserSettingsMapper
     {
-        public static Shared.Models.UserSettings ToModel(this UserSettings userSettings)
+        public static Shared.Models.UserSettings ToModel(this UserSettings source)
         {
             return new Shared.Models.UserSettings
             {
-                LocationId = userSettings.LocationId,
-                TemperatureUnit = (Shared.Models.TemperatureUnit)userSettings.TemperatureUnit
+                LocationId = source.LocationId,
+                TemperatureUnit = (Shared.Models.TemperatureUnit)source.TemperatureUnit
             };
         }
     }
