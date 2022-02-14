@@ -1,0 +1,12 @@
+﻿using Refit;
+using WeatherForecastSample.Shared.Models;
+
+namespace WeatherForecastSample.UI.Apis
+{
+    [Headers("Content-Type: application/json")]
+    public interface ILocationApi
+    {
+        [Get("/locations")]
+        Task<IEnumerable<Location>> GetLocationsAsync();
+    }
+}

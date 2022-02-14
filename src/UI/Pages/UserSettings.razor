@@ -1,0 +1,47 @@
+﻿@page "/settings"
+@inherits UserSettingsBase
+
+<h3>Settings</h3>
+
+@if(UserSettings == null || !Locations.Any())
+{
+    <span>Loading...</span>
+}
+else
+{
+    
+    <EditForm Model="UserSettings" OnValidSubmit="ExecuteSaveUserSettingsAsync" class="card card-body bg-light mt-5" style="max-width:500px;">
+        <div class="form-group row">
+            <label for="temperatureUnit" class="col-form-label">In what unit would you like to see the temperature?</label>
+            <div>
+                <div class="btn-group" id="temperatureUnit" role="group" aria-label="Select Temperature Unit">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnDegreesCelsius" autocomplete="off" 
+                        checked="@(UserSettings.TemperatureUnit == TemperatureUnit.DegreesCelsius)">
+                    <label class="btn btn-outline-primary" for="btnDegreesCelsius">°C</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnDegreesFahrenheit" autocomplete="off"
+                        checked="@(UserSettings.TemperatureUnit == TemperatureUnit.DegreesFahrenheit)">
+                    <label class="btn btn-outline-primary" for="btnDegreesFahrenheit">°F</label>
+                </div>
+                <ValidationMessage For="@(() => UserSettings.TemperatureUnit)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-form-label">For which location would you like to see the weather forecasts?</label>
+            <div>
+                <InputSelect @bind-Value="UserSettings.LocationId" class="form-select">
+                    @foreach (var location in Locations)
+                    {
+                        <option value="@location.Id">@location.Name</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => UserSettings.LocationId)" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right mt-3">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a href="/" role="button" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+    </EditForm>
+}

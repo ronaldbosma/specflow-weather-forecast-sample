@@ -23,6 +23,16 @@ builder.Services.AddRefitClient<IWeatherForecastApi>()
                 .SetHandlerLifetime(TimeSpan.FromMinutes(2))
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
 
+builder.Services.AddRefitClient<IUserSettingsApi>()
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7288/api"))
+                .SetHandlerLifetime(TimeSpan.FromMinutes(2))
+                .AddHttpMessageHandler<AuthenticationHeaderHandler>();
+
+builder.Services.AddRefitClient<ILocationApi>()
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7288/api"))
+                .SetHandlerLifetime(TimeSpan.FromMinutes(2))
+                .AddHttpMessageHandler<AuthenticationHeaderHandler>();
+
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
