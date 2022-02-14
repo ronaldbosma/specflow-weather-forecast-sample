@@ -29,7 +29,7 @@ namespace WeatherForecastSample.WebAPI.Controllers
             var user = await _userManager.FindByNameAsync(userForAuthentication.Email);
             if (user == null || !await _userManager.CheckPasswordAsync(user, userForAuthentication.Password))
             {
-                return Unauthorized(new LoginResponse { ErrorMessage = "Invalid Authentication" });
+                return Unauthorized(new LoginResponse { ErrorMessage = "Login failed due to invalid credentials." });
             }
 
             var signingCredentials = GetSigningCredentials();
