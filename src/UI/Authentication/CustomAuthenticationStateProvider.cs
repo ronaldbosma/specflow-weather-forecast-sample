@@ -5,14 +5,14 @@ using System.Security.Claims;
 
 namespace WeatherForecastSample.UI.Authentication
 {
-    public class AuthStateProvider : AuthenticationStateProvider
+    public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {
         private readonly HttpClient _httpClient;
         private readonly ILocalStorageService _localStorage;
 
         private readonly static AuthenticationState Anonymous = new(new ClaimsPrincipal(new ClaimsIdentity()));
 
-        public AuthStateProvider(HttpClient httpClient, ILocalStorageService localStorage)
+        public CustomAuthenticationStateProvider(HttpClient httpClient, ILocalStorageService localStorage)
         {
             _httpClient = httpClient;
             _localStorage = localStorage;

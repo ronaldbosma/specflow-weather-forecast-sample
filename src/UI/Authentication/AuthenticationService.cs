@@ -31,7 +31,7 @@ namespace WeatherForecastSample.UI.Authentication
             }
 
             await _localStorage.SetItemAsync(Constants.AuthenticationTokenStoreKey, response.Content.Token);
-            ((AuthStateProvider)_authStateProvider).NotifyUserAuthentication(request.Email);
+            ((CustomAuthenticationStateProvider)_authStateProvider).NotifyUserAuthentication(request.Email);
 
             return new LoginResponse {  IsAuthenticationSuccessful = true };
         }
@@ -39,7 +39,7 @@ namespace WeatherForecastSample.UI.Authentication
         public async Task LogoutAsync()
         {
             await _localStorage.RemoveItemAsync(Constants.AuthenticationTokenStoreKey);
-            ((AuthStateProvider)_authStateProvider).NotifyUserLogout();
+            ((CustomAuthenticationStateProvider)_authStateProvider).NotifyUserLogout();
         }
     }
 }

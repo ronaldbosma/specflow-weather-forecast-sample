@@ -26,6 +26,6 @@ builder.Services.AddRefitClient<IWeatherForecastApi>()
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
-builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
 await builder.Build().RunAsync();
