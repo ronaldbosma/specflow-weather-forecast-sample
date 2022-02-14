@@ -14,7 +14,7 @@ namespace WeatherForecastSample.UI.Pages
         protected override async Task OnInitializedAsync()
         {
             await AuthenticationService.LogoutAsync();
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("/login");
         }
     }
 }
