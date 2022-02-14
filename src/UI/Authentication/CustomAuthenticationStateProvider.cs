@@ -34,8 +34,8 @@ namespace WeatherForecastSample.UI.Authentication
         public void NotifyUserAuthentication(string email)
         {
             var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, email) }, Constants.AuthenticationType));
-            var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
-            NotifyAuthenticationStateChanged(authState);
+            var authenticationState = Task.FromResult(new AuthenticationState(authenticatedUser));
+            NotifyAuthenticationStateChanged(authenticationState);
         }
 
         public void NotifyUserLogout()
