@@ -1,5 +1,7 @@
 ﻿using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
+using Refit;
+using System.Net;
 using WeatherForecastSample.Shared.Authentication;
 using WeatherForecastSample.UI.Apis;
 
@@ -20,20 +22,19 @@ namespace WeatherForecastSample.UI.Authentication
 
         public async Task<LoginResponse> LoginAsync(LoginRequest request)
         {
-            var response = await _accountApi.LoginAsync(request);
-            if (!response.IsSuccessStatusCode)
+            try
             {
-                return new LoginResponse { ErrorMessage = response.Error?.ToString() };
+                var response = await _accountApi.LoginAsync(request);
+
+                await _localStorage.SetItemAsync(Constants.AuthenticationTokenStoreKey, response.Token);
+                _authenticationStateProvider.NotifyUserAuthentication(request.Username);
+
+                return new LoginResponse { IsAuthenticationSuccessful = true };
             }
-            if (response.Content == null)
+            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
             {
-                return new LoginResponse { ErrorMessage = "No token received" };
+                return new LoginResponse { ErrorMessage = "Login failed. Enter a valid username and password." };
             }
-
-            await _localStorage.SetItemAsync(Constants.AuthenticationTokenStoreKey, response.Content.Token);
-            _authenticationStateProvider.NotifyUserAuthentication(request.Username);
-
-            return new LoginResponse {  IsAuthenticationSuccessful = true };
         }
 
         public async Task LogoutAsync()

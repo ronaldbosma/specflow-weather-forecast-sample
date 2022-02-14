@@ -7,6 +7,6 @@ namespace WeatherForecastSample.UI.Apis
     public interface IAccountApi
     {
         [Post("/accounts/login")]
-        Task<IApiResponse<LoginResponse>> LoginAsync([Body]LoginRequest request);
+        Task<LoginResponse> LoginAsync([Body]LoginRequest request);
     }
 }
