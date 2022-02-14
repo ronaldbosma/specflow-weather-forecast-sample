@@ -14,8 +14,10 @@ namespace WeatherForecastSample.WebAPI
         {
             return services
                 .AddTransient<ILocationRepository, LocationRepository>()
-                .AddTransient<IWeatherForecastService, WeatherForecastService>()
-                .AddTransient<IWeatherForecastRepository, WeatherForecastRepository>();
+                .AddTransient<IUserSettingsRepository, UserSettingsRepository>()
+                .AddTransient<IUserSettingsService, UserSettingsService>()
+                .AddTransient<IWeatherForecastRepository, WeatherForecastRepository>()
+                .AddTransient<IWeatherForecastService, WeatherForecastService>();
         }
 
         public static IServiceCollection AddWeatherForecastDbContext(this IServiceCollection services)

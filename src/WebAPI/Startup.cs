@@ -18,6 +18,7 @@
 
             var jwtSettings = Configuration.GetSection("JWTSettings");
             services.AddAuthentication(jwtSettings);
+            services.AddHttpContextAccessor();
 
             services.AddWeatherForecastDependencies();
             services.AddWeatherForecastDbContext();
