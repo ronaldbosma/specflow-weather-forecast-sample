@@ -20,6 +20,13 @@ namespace WeatherForecastSample.Specs.StepDefinitions
                 new WeatherForecastRepository(_dbContext));
         }
 
+        [BeforeScenario]
+        public void CleanDatabase()
+        {
+            _dbContext.WeatherForecasts.RemoveRange(_dbContext.WeatherForecasts);
+            _dbContext.SaveChanges();
+        }
+
         [Given(@"the following weather forecasts")]
         public void GivenTheFollowingWeatherForecasts(IEnumerable<WeatherForecast> weatherForecasts)
         {
