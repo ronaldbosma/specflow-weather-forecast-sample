@@ -1,10 +1,11 @@
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using FluentAssertions;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using WeatherForecastSample.WebAPI.ApplicationLogic;
 using WeatherForecastSample.WebAPI.DataAccess;
 using WeatherForecastSample.WebAPI.Entities;
-using WeatherForecastSample.WebAPI.ApplicationLogic;
+using WeatherForecastSample.Specs.Support;
 
 namespace WeatherForecastSample.Specs.StepDefinitions
 {
@@ -19,25 +20,18 @@ namespace WeatherForecastSample.Specs.StepDefinitions
 
         public WeatherForecastSteps()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<WeatherForecastDbContext>()
-                .UseInMemoryDatabase("WeatherForecastSample.WeatherForecast");
-            _dbContext = new WeatherForecastDbContext(optionsBuilder.Options);
+            _dbContext = ScenarioContext.Current.Get<WeatherForecastDbContext>();
+            var currentUser = ScenarioContext.Current.Get<IAuthenticatedUser>();
 
             _weatherForecastService = new WeatherForecastService(
-                new WeatherForecastRepository(_dbContext));
-        }
-
-        [BeforeScenario]
-        public void CleanDatabase()
-        {
-            _dbContext.WeatherForecasts.RemoveRange(_dbContext.WeatherForecasts);
-            _dbContext.SaveChanges();
+                new WeatherForecastRepository(_dbContext),
+                new UserSettingsService(currentUser, new UserSettingsRepository(_dbContext))
+            );
         }
 
         [Given(@"the following weather forecasts")]
-        public void GivenTheFollowingWeatherForecasts(Table table)
+        public void GivenTheFollowingWeatherForecasts(IEnumerable<WeatherForecast> weatherForecasts)
         {
-            var weatherForecasts = table.CreateSet<WeatherForecast>();
             _dbContext.WeatherForecasts.AddRange(weatherForecasts);
             _dbContext.SaveChanges();
         }
@@ -58,6 +52,14 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         public void ThenTheFollowingWeatherForecastIsReturned(Table expectedWeatherForecast)
         {
             expectedWeatherForecast.CompareToInstance(_actualWeatherForecast);
+        }
+
+        [Then(@"the weather forecast for '([^']*)' is returned")]
+        public void ThenTheWeatherForecastForIsReturned(string expectedLocation)
+        {
+            var expectedLocationId = expectedLocation.GetTechnicalId();
+            _actualWeatherForecast.Should().NotBeNull();
+            _actualWeatherForecast!.LocationId.Should().Be(expectedLocationId);
         }
 
         [Then(@"the following weather forecasts are returned")]
