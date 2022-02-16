@@ -13,7 +13,7 @@ namespace WeatherForecastSample.WebAPI
         public static IServiceCollection AddWeatherForecastDependencies(this IServiceCollection services)
         {
             return services
-                .AddTransient<ICurrentUser, CurrentUser>()
+                .AddTransient<IAuthenticatedUser, AuthenticatedUser>()
                 .AddTransient<ILocationRepository, LocationRepository>()
                 .AddTransient<IUserSettingsRepository, UserSettingsRepository>()
                 .AddTransient<IUserSettingsService, UserSettingsService>()

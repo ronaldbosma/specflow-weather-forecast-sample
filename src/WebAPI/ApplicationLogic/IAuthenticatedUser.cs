@@ -1,6 +1,6 @@
 ﻿namespace WeatherForecastSample.WebAPI.ApplicationLogic
 {
-    public interface ICurrentUser
+    public interface IAuthenticatedUser
     {
         string GetUsername();
     }

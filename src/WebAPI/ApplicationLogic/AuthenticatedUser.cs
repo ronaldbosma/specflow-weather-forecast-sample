@@ -1,20 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
 namespace WeatherForecastSample.WebAPI.ApplicationLogic
 {
     /// <summary>
     /// Represents the current authenticated user.
     /// </summary>
-    internal class CurrentUser : ICurrentUser
+    internal class AuthenticatedUser : IAuthenticatedUser
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly UserManager<IdentityUser> _userManager;
 
-        public CurrentUser(IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
+        public AuthenticatedUser(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _userManager = userManager;
         }
 
         public string GetUsername()

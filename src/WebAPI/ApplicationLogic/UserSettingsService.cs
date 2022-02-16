@@ -5,18 +5,18 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
 {
     internal class UserSettingsService : IUserSettingsService
     {
-        private readonly ICurrentUser _currentUser;
+        private readonly IAuthenticatedUser _authenticatedUser;
         private readonly IUserSettingsRepository _userSettingsRepository;
 
-        public UserSettingsService(ICurrentUser currentUser, IUserSettingsRepository userSettingsRepository)
+        public UserSettingsService(IAuthenticatedUser authenticatedUser, IUserSettingsRepository userSettingsRepository)
         {
-            _currentUser = currentUser;
+            _authenticatedUser = authenticatedUser;
             _userSettingsRepository = userSettingsRepository;
         }
 
         public UserSettings GetUserSettingsForCurrentUser()
         {
-            var username = _currentUser.GetUsername();
+            var username = _authenticatedUser.GetUsername();
             return _userSettingsRepository.GetUserSettingsByUsername(username);
         }
     }
