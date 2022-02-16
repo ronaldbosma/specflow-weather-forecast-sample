@@ -5,7 +5,7 @@
     {
         private readonly DataContext _dataContext;
 
-        public DatabaseHooks(DataContext dataContext)
+        public DatabaseHooks()
         {
             _dataContext = new DataContext();
             ScenarioContext.Current.Set(_dataContext);
