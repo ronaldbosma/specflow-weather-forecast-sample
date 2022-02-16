@@ -438,3 +438,72 @@
 
                 Service.Instance.ValueComparers.Register(new DateOnlyValueComparer());
     ```
+
+## Context Injection
+
+Changes to show:
+
+1. Retrieve weather forecasts for users preferred location
+1. UserSteps
+1. DataContext to share DbContext
+1. 
+1. Issue with Location name in weather forecast table
+	1. New WeatherForecast model
+	1. Changed step argument transformation
+
+
+Use Context Injection
+
+1. Inject `DataContext` as parameter in
+    1. DatabaseHooks
+    1. DefaultDataHooks
+    1. UserSteps
+    1. WeatherForecastSteps
+
+1. Run scenarios
+
+1. Inject `Mock<IAuthenticatedUser>` as parameter in
+    1. DefaultDataHooks
+    1. UserSteps
+    1. WeatherForecastSteps
+
+1. Run scenarios. Should fail because mock can't be created
+
+1. Create `Startup.cs`
+    ```csharp
+    [Binding]
+    internal class Startup
+    {
+        private readonly IObjectContainer _objectContainer;
+
+        public Startup(IObjectContainer objectContainer)
+        {
+            _objectContainer = objectContainer;
+        }
+
+        [BeforeScenario(Order = 0)]
+        public void RegisterDependencies()
+        {
+            var authenticatedUserFake = new Mock<IAuthenticatedUser>();
+            _objectContainer.RegisterInstanceAs(authenticatedUserFake);
+        }
+    }
+    ```
+
+1. Run scenarios
+
+1. Use BoDi to created dependencies
+    1. Inject `WeatherForecastService` in `WeatherForecastSteps`
+    1. Inject `DbContext` in `DataContext` and other classes
+
+1. Open `WeatherForecastSteps` and focus on `ctor`
+
+1. Switch to `demo-5-bodi` branch
+
+1. Run scenarios
+
+1. Show similarities between `Startup` code in `Specs` project, and DI registrations in Web API.
+
+1. Show available plugins on [SpecFlow site](https://docs.specflow.org/projects/specflow/en/latest/Extend/Available-Plugins.html).
+
+1. Switch to `demo-6-service-collection` branch
