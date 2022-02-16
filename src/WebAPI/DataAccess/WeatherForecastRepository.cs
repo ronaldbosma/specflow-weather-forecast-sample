@@ -12,9 +12,9 @@ namespace WeatherForecastSample.WebAPI.DataAccess
         }
 
         /// <inheritdoc />
-        public WeatherForecast GetByDate(DateTime date)
+        public WeatherForecast GetByDate(DateOnly date)
         {
-            return _context.WeatherForecasts.Single(wf => wf.Date == date);
+            return _context.WeatherForecasts.Single(wf => wf.Date == date.ToDateTime(TimeOnly.MinValue));
         }
 
         /// <inheritdoc />

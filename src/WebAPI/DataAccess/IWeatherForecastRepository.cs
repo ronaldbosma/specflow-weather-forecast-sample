@@ -9,7 +9,7 @@ namespace WeatherForecastSample.WebAPI.DataAccess
         /// </summary>
         /// <param name="date">The date of the weather forecast.</param>
         /// <returns>the weather forecast.</returns>
-        WeatherForecast GetByDate(DateTime date);
+        WeatherForecast GetByDate(DateOnly date);
 
         /// <summary>
         /// Gets the forecasts for the specified date range.

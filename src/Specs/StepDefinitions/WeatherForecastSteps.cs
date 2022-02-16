@@ -30,7 +30,8 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         [When(@"I retrieve the weather forecast for (.*)")]
         public void WhenIRetrieveTheWeatherForecastForFebruary(DateTime date)
         {
-            _actualWeatherForecast = _weatherForecastService.GetByDate(date);
+            var dateOnly = DateOnly.FromDateTime(date);
+            _actualWeatherForecast = _weatherForecastService.GetByDate(dateOnly);
         }
 
         [Then(@"the following weather forecast is returned")]

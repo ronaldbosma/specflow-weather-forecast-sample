@@ -12,7 +12,7 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
             _repository = repository;
         }
 
-        public WeatherForecast GetByDate(DateTime date)
+        public WeatherForecast GetByDate(DateOnly date)
         {
             return _repository.GetByDate(date);
         }
