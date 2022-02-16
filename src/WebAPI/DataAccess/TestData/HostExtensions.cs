@@ -12,7 +12,8 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
                 var context = services.GetRequiredService<WeatherForecastDbContext>();
                 var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
 
-                // Ensure database exists
+                // Always recreate database so we don't need migrations
+                context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
                 // Seed test data
