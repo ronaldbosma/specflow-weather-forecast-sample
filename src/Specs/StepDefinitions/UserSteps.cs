@@ -6,10 +6,10 @@
         private Mock<IAuthenticatedUser> _authenticatedUserFake;
         private DataContext _dataContext;
 
-        public UserSteps()
+        public UserSteps(DataContext dataContext)
         {
             _authenticatedUserFake = ScenarioContext.Current.Get<Mock<IAuthenticatedUser>>();
-            _dataContext = ScenarioContext.Current.Get<DataContext>();
+            _dataContext = dataContext;
         }
 
         [Given(@"the authenticated user '(.*)'")]

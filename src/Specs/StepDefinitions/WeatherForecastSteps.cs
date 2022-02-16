@@ -10,9 +10,9 @@ namespace WeatherForecastSample.Specs.StepDefinitions
 
         private WeatherForecast? _actualWeatherForecast;
 
-        public WeatherForecastSteps()
+        public WeatherForecastSteps(DataContext dataContext)
         {
-            _dataContext = ScenarioContext.Current.Get<DataContext>();
+            _dataContext = dataContext;
             var authenticatedUserFake = ScenarioContext.Current.Get<Mock<IAuthenticatedUser>>();
 
             _weatherForecastService = new WeatherForecastService(

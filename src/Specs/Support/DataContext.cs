@@ -7,8 +7,6 @@
             var optionsBuilder = new DbContextOptionsBuilder<WeatherForecastDbContext>()
                 .UseInMemoryDatabase("WeatherForecastSample.WeatherForecast");
             DbContext = new WeatherForecastDbContext(optionsBuilder.Options);
-
-            ScenarioContext.Current.Set(this);
         }
 
         public WeatherForecastDbContext DbContext { get; }

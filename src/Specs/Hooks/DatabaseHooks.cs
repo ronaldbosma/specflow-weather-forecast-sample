@@ -7,8 +7,7 @@
 
         public DatabaseHooks(DataContext dataContext)
         {
-            _dataContext = new DataContext();
-            ScenarioContext.Current.Set(_dataContext);
+            _dataContext = dataContext;
         }
 
         [BeforeScenario(Order = 10)]
