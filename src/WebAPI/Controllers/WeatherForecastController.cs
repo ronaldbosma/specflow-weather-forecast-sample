@@ -27,7 +27,7 @@ namespace WeatherForecastSample.WebAPI.Controllers
         [HttpGet("/api/weatherforecasts/date/{date}")]
         public WeatherForecastDetails GetWeatherForecastByDate(DateTime date)
         {
-            var weatherForecast = _weatherForecastService.GetByDate(DateOnly.FromDateTime(date));
+            var weatherForecast = _weatherForecastService.GetByDate(date);
             return weatherForecast.MapToDetails();
         }
     }

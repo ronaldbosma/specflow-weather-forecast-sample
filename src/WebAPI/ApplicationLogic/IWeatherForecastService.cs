@@ -4,7 +4,7 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
 {
     public interface IWeatherForecastService
     {
-        WeatherForecast GetByDate(DateOnly date);
+        WeatherForecast GetByDate(DateTime date);
 
         IEnumerable<WeatherForecast> GetForComingWeek();
     }

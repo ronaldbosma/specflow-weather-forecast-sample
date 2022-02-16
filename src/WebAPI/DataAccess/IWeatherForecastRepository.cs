@@ -9,7 +9,7 @@ namespace WeatherForecastSample.WebAPI.DataAccess
         /// </summary>
         /// <param name="date">The date of the weather forecast.</param>
         /// <returns>the weather forecast.</returns>
-        WeatherForecast GetByDate(DateOnly date);
+        WeatherForecast GetByDate(DateTime date);
 
         /// <summary>
         /// Gets the forecasts for the specified date range.
@@ -17,6 +17,6 @@ namespace WeatherForecastSample.WebAPI.DataAccess
         /// <param name="fromDate">The start date of the date range.</param>
         /// <param name="untilDate">The end date of the date range. The weather forecast for the end date is included.</param>
         /// <returns>a collection of weather forecasts.</returns>
-        IEnumerable<WeatherForecast> GetForDateRange(DateOnly fromDate, DateOnly untilDate);
+        IEnumerable<WeatherForecast> GetForDateRange(DateTime fromDate, DateTime untilDate);
     }
 }

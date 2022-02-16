@@ -12,14 +12,14 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
             _repository = repository;
         }
 
-        public WeatherForecast GetByDate(DateOnly date)
+        public WeatherForecast GetByDate(DateTime date)
         {
             return _repository.GetByDate(date);
         }
 
         public IEnumerable<WeatherForecast> GetForComingWeek()
         {
-            var today = DateOnly.FromDateTime(DateTime.Today);
+            var today = DateTime.Today;
             var endOfComingWeek = today.AddDays(6);
 
             return _repository.GetForDateRange(today, endOfComingWeek);

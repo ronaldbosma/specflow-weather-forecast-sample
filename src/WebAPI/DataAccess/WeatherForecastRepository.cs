@@ -12,13 +12,13 @@ namespace WeatherForecastSample.WebAPI.DataAccess
         }
 
         /// <inheritdoc />
-        public WeatherForecast GetByDate(DateOnly date)
+        public WeatherForecast GetByDate(DateTime date)
         {
             return _context.WeatherForecasts.Single(wf => wf.Date == date);
         }
 
         /// <inheritdoc />
-        public IEnumerable<WeatherForecast> GetForDateRange(DateOnly fromDate, DateOnly untilDate)
+        public IEnumerable<WeatherForecast> GetForDateRange(DateTime fromDate, DateTime untilDate)
         {
             return _context.WeatherForecasts.Where(wf => wf.Date >= fromDate && wf.Date <= untilDate);
         }
