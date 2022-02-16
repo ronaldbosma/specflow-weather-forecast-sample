@@ -24,6 +24,7 @@ namespace WeatherForecastSample.WebAPI.Controllers.Mappers
             return new Shared.Models.WeatherForecastDetails
             {
                 Id = source.Id,
+                LocationId = source.LocationId,
                 Date = source.Date.ToDateTime(TimeOnly.MinValue),
                 WeatherType = (Shared.Models.WeatherType)source.WeatherType,
                 MaximumTemperature = source.MaximumTemperature,

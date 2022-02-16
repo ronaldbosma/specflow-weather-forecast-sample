@@ -14,8 +14,8 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
         public void SeedData()
         {
             AddLocation("Amsterdam");
-            AddLocation("Madrid");
             AddLocation("London");
+            AddLocation("Madrid");
 
             _context.SaveChanges();
         }

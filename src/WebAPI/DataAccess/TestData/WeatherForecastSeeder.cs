@@ -34,14 +34,14 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
 
         private void AddWeatherForecastsForLondon()
         {
-            AddWeatherForecast("London", DateTime.Today.AddDays(-1), WeatherType.Rainy, 11, 12, 5, 80, WindDirection.S, 0);
-            AddWeatherForecast("London", DateTime.Today, WeatherType.PartlyClouded, 11, 13, 0, 1, WindDirection.S, 1);
-            AddWeatherForecast("London", DateTime.Today.AddDays(1), WeatherType.PartlyClouded, 13, 15, 0, 5, WindDirection.W, 1);
-            AddWeatherForecast("London", DateTime.Today.AddDays(2), WeatherType.Rainy, 11, 12, 0.2m, 20, WindDirection.E, 1);
-            AddWeatherForecast("London", DateTime.Today.AddDays(3), WeatherType.Rainy, 10, 13, 12, 76, WindDirection.NW, 3);
-            AddWeatherForecast("London", DateTime.Today.AddDays(4), WeatherType.Stormy, 9, 9, 32, 90, WindDirection.W, 6);
-            AddWeatherForecast("London", DateTime.Today.AddDays(5), WeatherType.Rainy, 10, 11, 2, 77, WindDirection.N, 2);
-            AddWeatherForecast("London", DateTime.Today.AddDays(6), WeatherType.Rainy, 11, 12, 2, 77, WindDirection.N, 2);
+            AddWeatherForecast("London", DateTime.Today.AddDays(-1), WeatherType.PartlyClouded, 13, 15, 0, 5, WindDirection.W, 1);
+            AddWeatherForecast("London", DateTime.Today, WeatherType.Rainy, 11, 12, 0.2m, 20, WindDirection.E, 1);
+            AddWeatherForecast("London", DateTime.Today.AddDays(1), WeatherType.Rainy, 10, 13, 12, 76, WindDirection.NW, 3);
+            AddWeatherForecast("London", DateTime.Today.AddDays(2), WeatherType.Stormy, 9, 9, 32, 90, WindDirection.W, 6);
+            AddWeatherForecast("London", DateTime.Today.AddDays(3), WeatherType.Rainy, 10, 11, 2, 77, WindDirection.N, 2);
+            AddWeatherForecast("London", DateTime.Today.AddDays(4), WeatherType.Rainy, 11, 12, 2, 77, WindDirection.N, 2);
+            AddWeatherForecast("London", DateTime.Today.AddDays(5), WeatherType.Rainy, 11, 12, 5, 80, WindDirection.S, 0);
+            AddWeatherForecast("London", DateTime.Today.AddDays(6), WeatherType.Cloudy, 11, 13, 0, 1, WindDirection.S, 1);
         }
 
         private void AddWeatherForecastsForMadrid()
