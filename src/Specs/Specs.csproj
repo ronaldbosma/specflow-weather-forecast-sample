@@ -25,4 +25,11 @@
     <ProjectReference Include="..\WebAPI\WebAPI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\" />
+    <Folder Include="Hooks\" />
+    <Folder Include="StepDefinitions\" />
+    <Folder Include="Support\" />
+  </ItemGroup>
+
 </Project>
