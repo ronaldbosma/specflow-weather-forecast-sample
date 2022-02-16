@@ -4,6 +4,8 @@
     {
         public int Id { get; set; }
 
+        public int LocationId { get; set; }
+
         public DateTime Date { get; set; }
 
         public WeatherType WeatherType { get; set; }

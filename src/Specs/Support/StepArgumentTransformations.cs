@@ -24,7 +24,8 @@ namespace WeatherForecastSample.Specs.Support
         [StepArgumentTransformation]
         public IEnumerable<WeatherForecast> TableToWeatherForecasts(Table table)
         {
-            return table.CreateSet<WeatherForecast>();
+            var weatherForecasts = table.CreateSet<Models.WeatherForecast>();
+            return weatherForecasts.Select(wf => wf.ToEntity()).ToList();
         }
     }
 }

@@ -6,32 +6,24 @@ namespace WeatherForecastSample.Specs.StepDefinitions
     internal class WeatherForecastSteps
     {
         private readonly WeatherForecastService _weatherForecastService;
-        private readonly WeatherForecastDbContext _dbContext;
+        private readonly DataContext _dataContext;
 
         private WeatherForecast? _actualWeatherForecast;
 
         public WeatherForecastSteps()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<WeatherForecastDbContext>()
-                .UseInMemoryDatabase("WeatherForecastSample.WeatherForecast");
-            _dbContext = new WeatherForecastDbContext(optionsBuilder.Options);
+            _dataContext = ScenarioContext.Current.Get<DataContext>();
+            var authenticatedUserFake = ScenarioContext.Current.Get<Mock<IAuthenticatedUser>>();
 
             _weatherForecastService = new WeatherForecastService(
-                new WeatherForecastRepository(_dbContext));
-        }
-
-        [BeforeScenario]
-        public void CleanDatabase()
-        {
-            _dbContext.WeatherForecasts.RemoveRange(_dbContext.WeatherForecasts);
-            _dbContext.SaveChanges();
+                new WeatherForecastRepository(_dataContext.DbContext),
+                new UserSettingsService(authenticatedUserFake.Object, new UserSettingsRepository(_dataContext.DbContext)));
         }
 
         [Given(@"the following weather forecasts")]
         public void GivenTheFollowingWeatherForecasts(IEnumerable<WeatherForecast> weatherForecasts)
         {
-            _dbContext.WeatherForecasts.AddRange(weatherForecasts);
-            _dbContext.SaveChanges();
+            _dataContext.AddWeatherForecasts(weatherForecasts);
         }
 
         [When(@"I retrieve the weather forecast for (.*)")]
@@ -44,6 +36,14 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         public void ThenTheFollowingWeatherForecastIsReturned(Table table)
         {
             table.CompareToInstance(_actualWeatherForecast);
+        }
+
+        [Then(@"the weather forecast for '([^']*)' is returned")]
+        public void ThenTheWeatherForecastForIsReturned(string expectedLocation)
+        {
+            var expectedLocationId = expectedLocation.GetTechnicalId();
+            _actualWeatherForecast.Should().NotBeNull();
+            _actualWeatherForecast!.LocationId.Should().Be(expectedLocationId);
         }
     }
 }
