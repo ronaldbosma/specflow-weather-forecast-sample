@@ -15,6 +15,12 @@ namespace WeatherForecastSample.Specs.Support
             return DateTime.Today;
         }
 
+        [StepArgumentTransformation("(.*)")]
+        public DateOnly DateOnlyToDateTime(DateTime dateTime)
+        {
+            return DateOnly.FromDateTime(dateTime);
+        }
+
         [StepArgumentTransformation]
         public IEnumerable<WeatherForecast> TableToWeatherForecasts(Table table)
         {
