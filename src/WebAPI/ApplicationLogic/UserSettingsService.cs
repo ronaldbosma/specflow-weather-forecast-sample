@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
 using WeatherForecastSample.WebAPI.DataAccess;
 using WeatherForecastSample.WebAPI.Entities;
 
@@ -7,26 +6,26 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
 {
     internal class UserSettingsService : IUserSettingsService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICurrentUser _currentUser;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserSettingsRepository _userSettingsRepository;
 
-        public UserSettingsService(IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, IUserSettingsRepository userSettingsRepository)
+        public UserSettingsService(ICurrentUser currentUser, UserManager<IdentityUser> userManager, IUserSettingsRepository userSettingsRepository)
         {
-            _httpContextAccessor = httpContextAccessor;
+            _currentUser = currentUser;
             _userManager = userManager;
             _userSettingsRepository = userSettingsRepository;
         }
 
         public async Task<UserSettings> GetUserSettingsForCurrentUserAsync()
         {
-            var userId = await GetCurrentUserIdAsync();
+            var userId = await GetUserIdAsync();
             return await _userSettingsRepository.GetUserSettingsAsync(userId);
         }
 
-        private async Task<string> GetCurrentUserIdAsync()
+        private async Task<string> GetUserIdAsync()
         {
-            var username = GetCurrentUsername();
+            var username = _currentUser.GetUsername();
             var user = await _userManager.FindByNameAsync(username);
 
             if (user == null)
@@ -35,17 +34,6 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
             }
 
             return user.Id;
-        }
-
-        private string GetCurrentUsername()
-        {
-            var nameClaim = _httpContextAccessor.HttpContext?.User.Claims.SingleOrDefault(c => c.Type == ClaimTypes.Name);
-            if (string.IsNullOrWhiteSpace(nameClaim?.Value))
-            {
-                throw new InvalidOperationException("Username not found in claims.");
-            }
-
-            return nameClaim.Value;
         }
     }
 }
