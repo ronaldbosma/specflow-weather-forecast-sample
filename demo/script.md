@@ -68,6 +68,8 @@
     }
     ```
 
+1. **Multiple** attributes possible. E.g. the `When` can also have a `Given` attribute.
+
 1. Execute scenario. It **fails** because the method is not yet implemented.
     1. Show output in Test Explorer window.
 
