@@ -10,7 +10,5 @@
 
         public const string Username = "Dean";
         public const string UserId = Username;
-        public static IdentityUser User = new IdentityUser(Username) { Id = Username };
-        public static UserSettings UserSettings = new UserSettings { UserId = UserId, LocationId = LocationId, TemperatureUnit = TemperatureUnit.DegreesCelsius };
     }
 }

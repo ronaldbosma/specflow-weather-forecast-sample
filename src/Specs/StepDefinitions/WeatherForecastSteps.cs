@@ -6,22 +6,21 @@ namespace WeatherForecastSample.Specs.StepDefinitions
     internal class WeatherForecastSteps
     {
         private readonly IWeatherForecastService _weatherForecastService;
-        private readonly WeatherForecastDbContext _dbContext;
+        private readonly DataContext _dataContext;
         
         private WeatherForecast? _actualWeatherForecast;
         private List<WeatherForecast> _actualWeatherForecasts = new();
 
-        public WeatherForecastSteps(IWeatherForecastService weatherForecastService, WeatherForecastDbContext dbContext)
+        public WeatherForecastSteps(IWeatherForecastService weatherForecastService, DataContext dbContext)
         {
             _weatherForecastService = weatherForecastService;
-            _dbContext = dbContext;
+            _dataContext = dbContext;
         }
 
         [Given(@"the following weather forecasts")]
         public void GivenTheFollowingWeatherForecasts(IEnumerable<WeatherForecast> weatherForecasts)
         {
-            _dbContext.WeatherForecasts.AddRange(weatherForecasts);
-            _dbContext.SaveChanges();
+            _dataContext.AddWeatherForecasts(weatherForecasts);
         }
 
         [When(@"I retrieve the weather forecast for (.*)")]

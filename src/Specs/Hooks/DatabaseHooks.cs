@@ -3,21 +3,17 @@
     [Binding]
     internal class DatabaseHooks
     {
-        private readonly WeatherForecastDbContext _dbContext;
+        private readonly DataContext _dataContext;
 
-        public DatabaseHooks(WeatherForecastDbContext dbContext)
+        public DatabaseHooks(DataContext dataContext)
         {
-            _dbContext = dbContext;
+            _dataContext = dataContext;
         }
 
         [BeforeScenario(Order = 10)]
         public void CleanDatabase()
         {
-            _dbContext.UserSettings.RemoveRange(_dbContext.UserSettings);
-            _dbContext.Users.RemoveRange(_dbContext.Users);
-            _dbContext.WeatherForecasts.RemoveRange(_dbContext.WeatherForecasts);
-            _dbContext.Locations.RemoveRange(_dbContext.Locations);
-            _dbContext.SaveChanges();
+            _dataContext.CleanDatabase();
         }
     }
 }

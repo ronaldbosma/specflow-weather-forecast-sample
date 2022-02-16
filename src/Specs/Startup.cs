@@ -20,6 +20,8 @@ namespace WeatherForecastSample.Specs
             services.AddSingleton(authenticatedUser);
             services.AddSingleton(authenticatedUser.Object);
 
+            services.AddTransient<DataContext>();
+
             return services;
         }
     }

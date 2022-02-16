@@ -4,35 +4,25 @@
     internal class UserSteps
     {
         private Mock<IAuthenticatedUser> _authenticatedUserFake;
-        private WeatherForecastDbContext _dbContext;
+        private DataContext _dataContext;
 
-        public UserSteps(Mock<IAuthenticatedUser> authenticatedUserFake, WeatherForecastDbContext dbContext)
+        public UserSteps(Mock<IAuthenticatedUser> authenticatedUserFake, DataContext dataContext)
         {
             _authenticatedUserFake = authenticatedUserFake;
-            _dbContext = dbContext;
+            _dataContext = dataContext;
         }
 
         [Given(@"the authenticated user '(.*)'")]
-        public async Task GivenTheAuthenticatedUser(string username)
+        public void GivenTheAuthenticatedUser(string username)
         {
-            // Make sure the user exists in the database
-            _dbContext.Users.Add(new IdentityUser(username) { Id = username });
-            await _dbContext.SaveChangesAsync();
-
+            _dataContext.AddUser(username);
             _authenticatedUserFake.Setup(u => u.GetUsername()).Returns(username);
         }
 
         [Given(@"the preferred location of '([^']*)' is '([^']*)'")]
         public void GivenThePreferredLocationOfIs(string username, string preferredLocation)
         {
-            var userSettings = new UserSettings
-            {
-                UserId = username,
-                LocationId = preferredLocation.GetTechnicalId(),
-                TemperatureUnit = TemperatureUnit.DegreesCelsius,
-            };
-            _dbContext.UserSettings.Add(userSettings);
-            _dbContext.SaveChanges();
+            _dataContext.AddUserSettings(username, TemperatureUnit.DegreesCelsius, preferredLocation.GetTechnicalId());
         }
     }
 }
