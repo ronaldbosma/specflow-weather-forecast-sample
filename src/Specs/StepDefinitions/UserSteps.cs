@@ -14,12 +14,10 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         private Mock<IAuthenticatedUser> _authenticatedUserFake;
         private WeatherForecastDbContext _dbContext;
 
-        public UserSteps()
+        public UserSteps(Mock<IAuthenticatedUser> authenticatedUserFake, WeatherForecastDbContext dbContext)
         {
-            _authenticatedUserFake = new Mock<IAuthenticatedUser>();
-            _dbContext = ScenarioContext.Current.Get<WeatherForecastDbContext>();
-
-            ScenarioContext.Current.Set(_authenticatedUserFake.Object);
+            _authenticatedUserFake = authenticatedUserFake;
+            _dbContext = dbContext;
         }
 
         [Given(@"the authenticated user '(.*)'")]

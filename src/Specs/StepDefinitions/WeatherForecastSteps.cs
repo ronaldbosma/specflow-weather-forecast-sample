@@ -6,27 +6,23 @@ using WeatherForecastSample.WebAPI.ApplicationLogic;
 using WeatherForecastSample.WebAPI.DataAccess;
 using WeatherForecastSample.WebAPI.Entities;
 using WeatherForecastSample.Specs.Support;
+using Moq;
 
 namespace WeatherForecastSample.Specs.StepDefinitions
 {
     [Binding]
     internal class WeatherForecastSteps
     {
-        private readonly WeatherForecastService _weatherForecastService;
+        private readonly IWeatherForecastService _weatherForecastService;
         private readonly WeatherForecastDbContext _dbContext;
         
         private WeatherForecast? _actualWeatherForecast;
         private List<WeatherForecast> _actualWeatherForecasts = new();
 
-        public WeatherForecastSteps()
+        public WeatherForecastSteps(IWeatherForecastService weatherForecastService, WeatherForecastDbContext dbContext)
         {
-            _dbContext = ScenarioContext.Current.Get<WeatherForecastDbContext>();
-            var currentUser = ScenarioContext.Current.Get<IAuthenticatedUser>();
-
-            _weatherForecastService = new WeatherForecastService(
-                new WeatherForecastRepository(_dbContext),
-                new UserSettingsService(currentUser, new UserSettingsRepository(_dbContext))
-            );
+            _weatherForecastService = weatherForecastService;
+            _dbContext = dbContext;
         }
 
         [Given(@"the following weather forecasts")]
