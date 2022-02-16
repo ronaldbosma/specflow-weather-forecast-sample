@@ -22,7 +22,8 @@ namespace WeatherForecastSample.Shared
 
         public static Temperature FromDegreesCelsius(int degreesCelsius)
         {
-            throw new NotImplementedException();
+            var degreesFahrenheit = (decimal)degreesCelsius * 9 / 5 + 32;
+            return new(degreesCelsius, degreesFahrenheit.RoundToWholeNumber());
         }
     }
 }
