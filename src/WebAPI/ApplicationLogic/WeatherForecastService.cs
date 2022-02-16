@@ -19,7 +19,7 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
 
         public IEnumerable<WeatherForecast> GetForComingWeek()
         {
-            var today = DateTime.Today;
+            var today = DateOnly.FromDateTime(DateTime.Today);
             var endOfComingWeek = today.AddDays(6);
 
             return _repository.GetForDateRange(today, endOfComingWeek);

@@ -33,7 +33,8 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
         private void AddWeatherForecast(string locationName, DateTime dateTime, WeatherType weatherType, int minimumTemperature, int maximumTemperature,
             decimal numberOfMillimetresRain, int percentageOfChanceOfRain, WindDirection windDirection, int windStrength)
         {
-            var weatherForecastDoesNotExists = !_context.WeatherForecasts.Any(wf => wf.Date == dateTime);
+            var date = DateOnly.FromDateTime(dateTime);
+            var weatherForecastDoesNotExists = !_context.WeatherForecasts.Any(wf => wf.Date == date);
 
             if (weatherForecastDoesNotExists)
             {
@@ -41,7 +42,7 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
 
                 _context.WeatherForecasts.Add(new WeatherForecast
                 {
-                    Date = dateTime,
+                    Date = date,
                     WeatherType = weatherType,
                     MinimumTemperature = minimumTemperature,
                     MaximumTemperature = maximumTemperature,

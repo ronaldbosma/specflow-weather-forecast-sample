@@ -10,6 +10,7 @@ namespace WeatherForecastSample.WebAPI.DataAccess.Configuration
         {
             builder.HasKey(wf => wf.Id);
             builder.HasIndex(wf => wf.Date).IsUnique();
+            builder.Property(wf => wf.Date).HasConversion<DateOnlyConverter, DateOnlyComparer>();
             builder.Property(wf => wf.NumberOfMillimetresRain).HasPrecision(6, 1);
         }
     }
