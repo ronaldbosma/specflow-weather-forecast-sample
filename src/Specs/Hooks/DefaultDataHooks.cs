@@ -6,12 +6,10 @@
         private readonly DataContext _dataContext;
         private readonly Mock<IAuthenticatedUser> _authenticatedUserFake;
 
-        public DefaultDataHooks(DataContext dataContext)
+        public DefaultDataHooks(DataContext dataContext, Mock<IAuthenticatedUser> authenticatedUserFake)
         {
             _dataContext = dataContext;
-
-            _authenticatedUserFake = new Mock<IAuthenticatedUser>();
-            ScenarioContext.Current.Set(_authenticatedUserFake);
+            _authenticatedUserFake = authenticatedUserFake;
         }
 
         [BeforeScenario(Order = 20)]

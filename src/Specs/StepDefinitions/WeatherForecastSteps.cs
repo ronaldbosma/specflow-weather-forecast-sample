@@ -5,19 +5,16 @@ namespace WeatherForecastSample.Specs.StepDefinitions
     [Binding]
     internal class WeatherForecastSteps
     {
-        private readonly WeatherForecastService _weatherForecastService;
+        private readonly IWeatherForecastService _weatherForecastService;
         private readonly DataContext _dataContext;
 
         private WeatherForecast? _actualWeatherForecast;
+        private List<WeatherForecast> _actualWeatherForecasts = new();
 
-        public WeatherForecastSteps(DataContext dataContext)
+        public WeatherForecastSteps(IWeatherForecastService weatherForecastService, DataContext dbContext)
         {
-            _dataContext = dataContext;
-            var authenticatedUserFake = ScenarioContext.Current.Get<Mock<IAuthenticatedUser>>();
-
-            _weatherForecastService = new WeatherForecastService(
-                new WeatherForecastRepository(_dataContext.DbContext),
-                new UserSettingsService(authenticatedUserFake.Object, new UserSettingsRepository(_dataContext.DbContext)));
+            _weatherForecastService = weatherForecastService;
+            _dataContext = dbContext;
         }
 
         [Given(@"the following weather forecasts")]
@@ -27,15 +24,21 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         }
 
         [When(@"I retrieve the weather forecast for (.*)")]
-        public void WhenIRetrieveTheWeatherForecastForFebruary(DateOnly date)
+        public void WhenIRetrieveTheWeatherForecastFor(DateOnly date)
         {
             _actualWeatherForecast = _weatherForecastService.GetByDate(date);
         }
 
-        [Then(@"the following weather forecast is returned")]
-        public void ThenTheFollowingWeatherForecastIsReturned(Table table)
+        [When(@"I retrieve the weather forecasts for the coming week")]
+        public void WhenIRetrieveTheWeatherForecastsForTheComingWeek()
         {
-            table.CompareToInstance(_actualWeatherForecast);
+            _actualWeatherForecasts = _weatherForecastService.GetForComingWeek().ToList();
+        }
+
+        [Then(@"the following weather forecast is returned")]
+        public void ThenTheFollowingWeatherForecastIsReturned(Table expectedWeatherForecast)
+        {
+            expectedWeatherForecast.CompareToInstance(_actualWeatherForecast);
         }
 
         [Then(@"the weather forecast for '([^']*)' is returned")]
@@ -44,6 +47,12 @@ namespace WeatherForecastSample.Specs.StepDefinitions
             var expectedLocationId = expectedLocation.GetTechnicalId();
             _actualWeatherForecast.Should().NotBeNull();
             _actualWeatherForecast!.LocationId.Should().Be(expectedLocationId);
+        }
+
+        [Then(@"the following weather forecasts are returned")]
+        public void ThenTheFollowingWeatherForecastsAreReturned(Table expectedWeatherForecasts)
+        {
+            expectedWeatherForecasts.CompareToSet(_actualWeatherForecasts);
         }
     }
 }

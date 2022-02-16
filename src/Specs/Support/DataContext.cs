@@ -2,28 +2,26 @@
 {
     internal class DataContext
     {
-        public DataContext()
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<WeatherForecastDbContext>()
-                .UseInMemoryDatabase("WeatherForecastSample.WeatherForecast");
-            DbContext = new WeatherForecastDbContext(optionsBuilder.Options);
-        }
+        private readonly WeatherForecastDbContext _dbContext;
 
-        public WeatherForecastDbContext DbContext { get; }
+        public DataContext(WeatherForecastDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public void CleanDatabase()
         {
-            DbContext.UserSettings.RemoveRange(DbContext.UserSettings);
-            DbContext.Users.RemoveRange(DbContext.Users);
-            DbContext.WeatherForecasts.RemoveRange(DbContext.WeatherForecasts);
-            DbContext.Locations.RemoveRange(DbContext.Locations);
-            DbContext.SaveChanges();
+            _dbContext.UserSettings.RemoveRange(_dbContext.UserSettings);
+            _dbContext.Users.RemoveRange(_dbContext.Users);
+            _dbContext.WeatherForecasts.RemoveRange(_dbContext.WeatherForecasts);
+            _dbContext.Locations.RemoveRange(_dbContext.Locations);
+            _dbContext.SaveChanges();
         }
 
         public void AddWeatherForecasts(IEnumerable<WeatherForecast> weatherForecasts)
         {
-            DbContext.WeatherForecasts.AddRange(weatherForecasts);
-            DbContext.SaveChanges();
+            _dbContext.WeatherForecasts.AddRange(weatherForecasts);
+            _dbContext.SaveChanges();
         }
 
         public void AddUserWithSettings(string username, TemperatureUnit temperatureUnit, int locationId)
@@ -34,29 +32,29 @@
 
         public void AddUser(string username)
         {
-            DbContext.Users.Add(new IdentityUser(username) { Id = username });
-            DbContext.SaveChanges();
+            _dbContext.Users.Add(new IdentityUser(username) { Id = username });
+            _dbContext.SaveChanges();
         }
 
         public void AddUserSettings(string username, TemperatureUnit temperatureUnit, int locationId)
         {
-            DbContext.UserSettings.Add(new UserSettings
+            _dbContext.UserSettings.Add(new UserSettings
             {
                 UserId = username,
                 LocationId = locationId,
                 TemperatureUnit = temperatureUnit
             });
-            DbContext.SaveChanges();
+            _dbContext.SaveChanges();
         }
-        
+
         public void AddLocations(params string[] locations)
         {
             foreach (var location in locations)
             {
-                DbContext.Locations.Add(new Location { Id = location.GetTechnicalId(), Name = location });
+                _dbContext.Locations.Add(new Location { Id = location.GetTechnicalId(), Name = location });
             }
 
-            DbContext.SaveChanges();
+            _dbContext.SaveChanges();
         }
     }
 }
