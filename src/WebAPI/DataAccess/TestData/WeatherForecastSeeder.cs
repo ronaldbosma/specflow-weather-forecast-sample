@@ -76,7 +76,6 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
                     PercentageOfChanceOfRain = percentageOfChanceOfRain,
                     WindDirection = windDirection,
                     WindStrength = windStrength,
-                    LocationId = location.Id
                 });
             }
         }
