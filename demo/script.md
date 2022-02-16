@@ -16,6 +16,10 @@
     1. Choose `Installed`.
     1. Search for `SpecFlow`.
 
+1. SpecFlow project
+    1. Show add SpecFlow project wizard.
+    1. Show packages.
+
 1. Create new feature file `Convert Temperature.feature` and add the following content.
     ```gherkin
     Feature: Convert Temperature
@@ -35,6 +39,8 @@
     ```
 
 1. Build the solution and run the scenario. Show error message.
+1. Show **code behind** file.
+1. Explain SpecFlow components with sheet.
 
 1. Generate step definition files
     1. Explain
@@ -95,6 +101,7 @@
         Then the temperature is 212 °F
     ```
 
+    
 1. Replace scenarios with scenario outline
 
     ```gherkin
@@ -104,6 +111,19 @@
         Then the temperature is <fahrenheit> °F
 
         Examples:
+            | celsius | fahrenheit |
+            | -273    | -459       |
+            | -40     | -40        |
+            | 0       | 32         |
+            | 37      | 99         |
+            | 100     | 212        |
+    ```
+
+1. Build and show test names. See first column in name.
+
+1. Add case column to examples
+
+    ```gherkin
             | case             | celsius | fahrenheit |
             | Absolute Zero    | -273    | -459       |
             | Parity           | -40     | -40        |
@@ -112,9 +132,7 @@
             | Boiling point    | 100     | 212        |
     ```
 
-1. Run scenario outline.
-    1. See test names.
-    1. Body Temperature case will fail.
+1. Run scenario outline. Body Temperature case will fail.
 
 1. Add comment about rounding
 
@@ -137,17 +155,29 @@
 
 ## Assist Helpers
 
-1. Uncomment feature `Retrieve weather forecast for a day`
+1. Add feature file 'Retrieve weather forecast for a day.feature'
 
 1. Generate steps in `WeatherForecastSteps`.
 
+1. Explain how we test is going to work with **PowerPoint** sheet: _Sequence: retrieve weather forecast scenario_.
+
 1. Show implementation of `WeatherForecastService.GetByDate`.
+
+1. Add start of implementation set breakpoint
+    ```gherkin
+    foreach (var row in table.Rows)
+    {
+        string date = row["Date"];
+    }
+    ```
 
 1. Add private fields and constructor.
 
     ```csharp
     private readonly WeatherForecastService _weatherForecastService;
     private readonly WeatherForecastDbContext _dbContext;
+        
+    private WeatherForecast? _actualWeatherForecast;
 
     public WeatherForecastSteps()
     {
@@ -215,6 +245,8 @@
     _dbContext.SaveChanges();
     ```
 
+1. Run scenario. It should succeed.
+
 1. Replace `Then` implementation
     ```csharp
     var expectedWeatherForecast = table.CreateInstance<WeatherForecast>();
@@ -229,11 +261,11 @@
     ```
 1. Transpose table in `Then` step
     ```gherkin
-    | Property            | Value            |
-    | Date                | 14 February 2022 |
-    | Weather Type        | Sunny            |
-    | Minimum Temperature | 9                |
-    | Maximum Temperature | 12               |
+            | Property            | Value            |
+            | Date                | 17 February 2022 |
+            | Weather Type        | Sunny            |
+            | Minimum Temperature | 9                |
+            | Maximum Temperature | 12               |
     ```
 
 ## Step Argument Transformations
@@ -248,7 +280,6 @@
 1. Add `[Binding]` attribute.
 
 1. Add step argument transformation for today.
-
     ```csharp
     [StepArgumentTransformation("(.*)")]
     public DateTime TodayToDateTime(string value)
@@ -284,7 +315,13 @@
         _dbContext.SaveChanges();
     }
     ```
-1. Switch to `demo-2-dateonly` branch
+1. Switch to `demo-2-dateonly` branch.
+
+1. Run scenario.
+
+1. Change type of date parameter to `DateOnly` in `WhenIRetrieveTheWeatherForecastForFebruary`.
+
+1. Run scenario
 
 1. Add step argument transformation to convert `DateTime` to `DateOnly
     ```csharp
@@ -295,7 +332,7 @@
     }
     ```
 
-## Hooks
+1. Mention that converting from text **today** to `DateOnly` directly is possible. But then specific dates are not converted.
 
 1. Add second weather forecast scenario for specific date
     ```gherkin
@@ -303,19 +340,23 @@
         
         Given the following weather forecasts
             | Date             | Weather Type  | Minimum Temperature | Maximum Temperature |
-            | 14 February 2022 | Sunny         | 12                  | 17                  |
-            | 15 February 2022 | Sunny         | 9                   | 12                  |
-            | 16 February 2022 | PartlyClouded | 5                   | 10                  |
-        When I retrieve the weather forecast for 16 February 2022
+            | 16 February 2022 | Sunny         | 12                  | 17                  |
+            | 17 February 2022 | Sunny         | 9                   | 12                  |
+            | 18 February 2022 | PartlyClouded | 5                   | 10                  |
+        When I retrieve the weather forecast for 17 February 2022
         Then the following weather forecast is returned
             | Property            | Value            |
-            | Date                | 16 February 2022 |
-            | Weather Type        | PartlyClouded    |
-            | Minimum Temperature | 5                |
-            | Maximum Temperature | 10               |
+            | Date                | 17 February 2022 |
+            | Weather Type        | Sunny            |
+            | Minimum Temperature | 9                |
+            | Maximum Temperature | 12               |
     ```
 
-1. Run **all** tests. One fails. Show error.
+1. Run scenario to show that it works.
+
+## Hooks
+
+1. Run **all** scenario. One fails. Show error.
 
 1. Run **only the failed** test. Test should succeed.
 
@@ -330,9 +371,15 @@
     }
     ```
 
+1. Show **PowerPoint** sheet with all hooks.
+
+1. Hooks are **global**. Set breakpoint in BeforeScenario and run a _Convert Temperature_ scenario in debug mode.
+
 ## Value Retrievers & Comparers
 
-1. Switch to `demo-3-dateonly-in-ef` branch
+1. Show `WeatherForecast` entity and the use of `DateTime` instead of `DateOnly`.
+
+1. Switch to `demo-3-dateonly-in-entity` branch
 
 1. Run scenario and show that second step fails.
 
