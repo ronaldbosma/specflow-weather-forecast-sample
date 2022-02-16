@@ -21,9 +21,8 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         }
 
         [Given(@"the following weather forecasts")]
-        public void GivenTheFollowingWeatherForecasts(Table table)
+        public void GivenTheFollowingWeatherForecasts(IEnumerable<WeatherForecast> weatherForecasts)
         {
-            var weatherForecasts = table.CreateSet<WeatherForecast>();
             _dbContext.WeatherForecasts.AddRange(weatherForecasts);
             _dbContext.SaveChanges();
         }

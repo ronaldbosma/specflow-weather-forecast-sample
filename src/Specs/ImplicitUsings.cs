@@ -3,6 +3,7 @@ global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
 global using Moq;
 global using TechTalk.SpecFlow;
+global using TechTalk.SpecFlow.Assist;
 //global using WeatherForecastSample.Specs.Support;
 global using WeatherForecastSample.WebAPI.ApplicationLogic;
 global using WeatherForecastSample.WebAPI.DataAccess;
