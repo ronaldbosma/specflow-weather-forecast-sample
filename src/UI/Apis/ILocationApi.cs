@@ -8,5 +8,8 @@ namespace WeatherForecastSample.UI.Apis
     {
         [Get("/locations")]
         Task<IEnumerable<Location>> GetLocationsAsync();
+
+        [Get("/locations/{id}")]
+        Task<Location> GetLocationByIdAsync(int id);
     }
 }

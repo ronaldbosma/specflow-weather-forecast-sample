@@ -1,4 +1,5 @@
 ﻿using WeatherForecastSample.Shared.Extensions;
+using WeatherForecastSample.Shared.Models;
 
 namespace WeatherForecastSample.Shared
 {
@@ -11,7 +12,13 @@ namespace WeatherForecastSample.Shared
         }
 
         public int DegreesCelsius { get; init; }
+
         public int DegreesFahrenheit { get; init; }
+
+        public string ToString(TemperatureUnit temperatureUnit)
+        {
+            return temperatureUnit == TemperatureUnit.DegreesCelsius ? $"{DegreesCelsius} °C" : $"{DegreesFahrenheit} °F";
+        }
 
         public static Temperature FromDegreesCelsius(int degreesCelsius)
         {

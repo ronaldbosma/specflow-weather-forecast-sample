@@ -1,0 +1,19 @@
+﻿@inject IUserSettingsApi UserSettingsApi
+
+<span>@_temperatureDisplay</span>
+
+@code {
+    private string _temperatureDisplay = string.Empty;
+
+    [Parameter]
+    public int Temperature { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        //TODO: load user settings once, or get from cascading value
+        var userSettings = await UserSettingsApi.GetUserSettingsAsync();
+
+        var temperature = WeatherForecastSample.Shared.Temperature.FromDegreesCelsius(Temperature);
+        _temperatureDisplay = temperature.ToString(userSettings.TemperatureUnit);
+    }
+}

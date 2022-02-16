@@ -1,0 +1,16 @@
+﻿@inject ILocationApi LocationApi
+
+<span>@_locationName</span>
+
+@code {
+    private string _locationName = string.Empty;
+
+    [Parameter]
+    public int LocationId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var location = await LocationApi.GetLocationByIdAsync(LocationId);
+        _locationName = location.Name;
+    }
+}
