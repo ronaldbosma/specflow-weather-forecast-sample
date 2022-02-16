@@ -1,12 +1,4 @@
-using Microsoft.AspNetCore.Identity;
-using FluentAssertions;
-using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using WeatherForecastSample.WebAPI.ApplicationLogic;
-using WeatherForecastSample.WebAPI.DataAccess;
-using WeatherForecastSample.WebAPI.Entities;
-using WeatherForecastSample.Specs.Support;
-using Moq;
 
 namespace WeatherForecastSample.Specs.StepDefinitions
 {

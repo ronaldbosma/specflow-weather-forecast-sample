@@ -1,6 +1,4 @@
-﻿using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
-using WeatherForecastSample.WebAPI.Entities;
+﻿using TechTalk.SpecFlow.Assist;
 
 namespace WeatherForecastSample.Specs.Support
 {

@@ -1,6 +1,4 @@
-﻿using WeatherForecastSample.WebAPI.Entities;
-
-namespace WeatherForecastSample.Specs.Support.Models
+﻿namespace WeatherForecastSample.Specs.Support.Models
 {
     internal class WeatherForecast
     {

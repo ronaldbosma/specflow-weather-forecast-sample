@@ -1,5 +1,3 @@
-using FluentAssertions;
-using TechTalk.SpecFlow;
 using WeatherForecastSample.Shared;
 
 namespace WeatherForecastSample.Specs.StepDefinitions

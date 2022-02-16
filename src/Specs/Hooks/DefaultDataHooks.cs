@@ -1,11 +1,4 @@
-﻿using Moq;
-using TechTalk.SpecFlow;
-using WeatherForecastSample.Specs.Support;
-using WeatherForecastSample.WebAPI.ApplicationLogic;
-using WeatherForecastSample.WebAPI.DataAccess;
-using WeatherForecastSample.WebAPI.Entities;
-
-namespace WeatherForecastSample.Specs.Hooks
+﻿namespace WeatherForecastSample.Specs.Hooks
 {
     [Binding]
     internal class DefaultDataHooks

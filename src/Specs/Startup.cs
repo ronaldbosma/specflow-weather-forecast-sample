@@ -1,11 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Moq;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SolidToken.SpecFlow.DependencyInjection;
-using TechTalk.SpecFlow;
 using WeatherForecastSample.WebAPI;
-using WeatherForecastSample.WebAPI.ApplicationLogic;
-using WeatherForecastSample.WebAPI.DataAccess;
 
 namespace WeatherForecastSample.Specs
 {

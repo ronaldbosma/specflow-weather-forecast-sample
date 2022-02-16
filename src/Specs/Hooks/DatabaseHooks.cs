@@ -1,7 +1,4 @@
-﻿using TechTalk.SpecFlow;
-using WeatherForecastSample.WebAPI.DataAccess;
-
-namespace WeatherForecastSample.Specs.Hooks
+﻿namespace WeatherForecastSample.Specs.Hooks
 {
     [Binding]
     internal class DatabaseHooks

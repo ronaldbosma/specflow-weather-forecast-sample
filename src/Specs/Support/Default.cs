@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using WeatherForecastSample.WebAPI.Entities;
-
-namespace WeatherForecastSample.Specs.Support
+﻿namespace WeatherForecastSample.Specs.Support
 {
     /// <summary>
     /// Contains default data used in the automation code.
