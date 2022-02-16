@@ -1,8 +1,8 @@
 ﻿using WeatherForecastSample.Shared.Extensions;
 
-namespace WeatherForecastSample.WebAPI.Entities
+namespace WeatherForecastSample.Shared
 {
-    internal record Temperature
+    public record Temperature
     {
         private Temperature(int degreesCelsius, int degreesFahrenheit)
         {
