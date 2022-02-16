@@ -16,5 +16,8 @@ Scenario: Retrieve weather forecast
         | 17 February 2022 | PartlyClouded | 5                   | 10                  |
     When I retrieve the weather forecast for 16 February 2022
     Then the following weather forecast is returned
-        | Date             | Weather Type | Minimum Temperature | Maximum Temperature |
-        | 16 February 2022 | Sunny        | 9                   | 12                  |
+        | Property            | Value            |
+        | Date                | 16 February 2022 |
+        | Weather Type        | Sunny            |
+        | Minimum Temperature | 9                |
+        | Maximum Temperature | 12               |
