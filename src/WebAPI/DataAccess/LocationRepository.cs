@@ -16,5 +16,11 @@ namespace WeatherForecastSample.WebAPI.DataAccess
         {
             return await _context.Locations.ToListAsync();
         }
+
+        public async Task<Location> GetByIdAsync(int id)
+        {
+            var location = await _context.Locations.FindAsync(id);
+            return location ?? throw new ArgumentException($"Unknown location id {id}", nameof(id));
+        }
     }
 }

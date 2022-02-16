@@ -23,5 +23,12 @@ namespace WeatherForecastSample.WebAPI.Controllers
             var locations = await _locationRepository.GetAllAsync();
             return locations.MapToModel();
         }
+
+        [HttpGet("/api/locations/{id}")]
+        public async Task<Location> GetLocation(int id)
+        {
+            var location = await _locationRepository.GetByIdAsync(id);
+            return location.MapToModel();
+        }
     }
 }
