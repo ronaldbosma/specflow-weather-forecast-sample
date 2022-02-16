@@ -4,6 +4,6 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
 {
     public interface IUserSettingsService
     {
-        Task<UserSettings> GetUserSettingsForCurrentUserAsync();
+        UserSettings GetUserSettingsForCurrentUser();
     }
 }

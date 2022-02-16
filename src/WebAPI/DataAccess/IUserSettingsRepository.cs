@@ -4,6 +4,6 @@ namespace WeatherForecastSample.WebAPI.DataAccess
 {
     public interface IUserSettingsRepository
     {
-        Task<UserSettings> GetUserSettingsAsync(string userId);
+        UserSettings GetUserSettingsByUsername(string username);
     }
 }

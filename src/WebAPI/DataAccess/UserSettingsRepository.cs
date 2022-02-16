@@ -11,13 +11,18 @@ namespace WeatherForecastSample.WebAPI.DataAccess
             _context = context;
         }
 
-        public async Task<UserSettings> GetUserSettingsAsync(string userId)
+        public UserSettings GetUserSettingsByUsername(string username)
         {
-            var userSettings = await _context.UserSettings.FindAsync(userId);
+            var userSettings = (from u in _context.Users
+                                where u.UserName == username
+                                from us in _context.UserSettings
+                                where us.UserId == u.Id
+                                select us
+                               ).SingleOrDefault();
 
             if (userSettings == null)
             {
-                throw new ArgumentException($"No user settings found for user with id {userId}", nameof(userId));
+                throw new ArgumentException($"No user settings found for user {username}", nameof(username));
             }
             
             return userSettings;

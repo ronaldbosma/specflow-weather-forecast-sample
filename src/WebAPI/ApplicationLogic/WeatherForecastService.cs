@@ -16,13 +16,14 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
 
         public WeatherForecast GetByDate(DateOnly date)
         {
-            var locationId = _userSettingsService.GetUserSettingsForCurrentUserAsync().Result.LocationId;
+            var locationId = _userSettingsService.GetUserSettingsForCurrentUser().LocationId;
             return _repository.GetByDate(locationId, date);
         }
 
         public IEnumerable<WeatherForecast> GetForComingWeek()
         {
-            var locationId = _userSettingsService.GetUserSettingsForCurrentUserAsync().Result.LocationId;
+            var locationId = _userSettingsService.GetUserSettingsForCurrentUser().LocationId;
+
             var today = DateOnly.FromDateTime(DateTime.Today);
             var endOfComingWeek = today.AddDays(6);
 

@@ -18,9 +18,9 @@ namespace WeatherForecastSample.WebAPI.Controllers
         }
 
         [HttpGet("/api/usersettings")]
-        public async Task<UserSettings> GetUserSettingsAsync()
+        public UserSettings GetUserSettings()
         {
-            var userSettings = await _userSettingsService.GetUserSettingsForCurrentUserAsync();
+            var userSettings = _userSettingsService.GetUserSettingsForCurrentUser();
             return userSettings.MapToModel();
         }
     }
