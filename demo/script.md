@@ -44,6 +44,7 @@
         1. Use of regular expressions.
     1. Rename parameters.
     1. Rename method.
+    1. Show 'Go to definition'.
 
 1. Implement scenario
 
