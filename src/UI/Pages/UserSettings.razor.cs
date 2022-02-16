@@ -12,6 +12,9 @@ namespace WeatherForecastSample.UI.Pages
         [Inject]
         public ILocationApi LocationApi { get; set; } = null!;
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; } = null!;
+
         public WeatherForecastSample.Shared.Models.UserSettings? UserSettings { get; set; }
 
         public IEnumerable<Location> Locations { get; set; } = new List<Location>();
@@ -22,9 +25,13 @@ namespace WeatherForecastSample.UI.Pages
             Locations = (await LocationApi.GetLocationsAsync()).OrderBy(l => l.Name);
         }
 
-        public Task ExecuteSaveUserSettingsAsync()
+        public async Task ExecuteSaveUserSettingsAsync()
         {
-            return Task.CompletedTask;
+            if (UserSettings != null)
+            {
+                await UserSettingsApi.UpdateUserSettingsAsync(UserSettings);
+                NavigationManager.NavigateTo("/");
+            }
         }
     }
 }

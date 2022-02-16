@@ -8,5 +8,8 @@ namespace WeatherForecastSample.UI.Apis
     {
         [Get("/usersettings")]
         Task<UserSettings> GetUserSettingsAsync();
+
+        [Put("/usersettings")]
+        Task UpdateUserSettingsAsync([Body]UserSettings userSettings);
     }
 }

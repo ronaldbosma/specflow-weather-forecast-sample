@@ -1,4 +1,6 @@
-﻿namespace WeatherForecastSample.WebAPI
+﻿using System.Text.Json.Serialization;
+
+namespace WeatherForecastSample.WebAPI
 {
     public class Startup
     {
@@ -11,7 +13,11 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                // Blazor sends enums to Web API as string value, so we need to register JsonStringEnumConverter.
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
             
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();

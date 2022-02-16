@@ -12,5 +12,14 @@ namespace WeatherForecastSample.WebAPI.Controllers.Mappers
                 TemperatureUnit = (Shared.Models.TemperatureUnit)source.TemperatureUnit
             };
         }
+
+        public static UserSettings MapToEntity(this Shared.Models.UserSettings source)
+        {
+            return new UserSettings
+            {
+                LocationId = source.LocationId,
+                TemperatureUnit = (TemperatureUnit)source.TemperatureUnit
+            };
+        }
     }
 }

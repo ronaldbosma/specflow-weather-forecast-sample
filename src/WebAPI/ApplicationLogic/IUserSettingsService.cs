@@ -5,5 +5,7 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
     public interface IUserSettingsService
     {
         UserSettings GetUserSettingsForCurrentUser();
+
+        void UpdateUserSettings(UserSettings newUserSettings);
     }
 }

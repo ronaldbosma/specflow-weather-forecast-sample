@@ -23,5 +23,11 @@ namespace WeatherForecastSample.WebAPI.Controllers
             var userSettings = _userSettingsService.GetUserSettingsForCurrentUser();
             return userSettings.MapToModel();
         }
+
+        [HttpPut("/api/usersettings")]
+        public void UpdateUserSettings([FromBody] UserSettings userSettings)
+        {
+            _userSettingsService.UpdateUserSettings(userSettings.MapToEntity());
+        }
     }
 }

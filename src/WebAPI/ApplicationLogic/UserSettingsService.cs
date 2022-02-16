@@ -19,5 +19,11 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
             var username = _authenticatedUser.GetUsername();
             return _userSettingsRepository.GetUserSettingsByUsername(username);
         }
+
+        public void UpdateUserSettings(UserSettings newUserSettings)
+        {
+            var username = _authenticatedUser.GetUsername();
+            _userSettingsRepository.UpdateUserSettings(username, newUserSettings);
+        }
     }
 }

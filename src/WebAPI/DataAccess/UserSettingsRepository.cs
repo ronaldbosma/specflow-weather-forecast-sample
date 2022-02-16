@@ -27,5 +27,14 @@ namespace WeatherForecastSample.WebAPI.DataAccess
             
             return userSettings;
         }
+
+        public void UpdateUserSettings(string username, UserSettings newUserSettings)
+        {
+            var currentUserSettings = GetUserSettingsByUsername(username);
+            currentUserSettings.LocationId = newUserSettings.LocationId;
+            currentUserSettings.TemperatureUnit = newUserSettings.TemperatureUnit;
+
+            _context.SaveChanges();
+        }
     }
 }
