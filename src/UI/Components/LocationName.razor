@@ -10,6 +10,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        //TODO: cache all locations
         var location = await LocationApi.GetLocationByIdAsync(LocationId);
         _locationName = location.Name;
     }
