@@ -1,7 +1,9 @@
-﻿using BoDi;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
+using SolidToken.SpecFlow.DependencyInjection;
 using TechTalk.SpecFlow;
+using WeatherForecastSample.WebAPI;
 using WeatherForecastSample.WebAPI.ApplicationLogic;
 using WeatherForecastSample.WebAPI.DataAccess;
 
@@ -10,30 +12,20 @@ namespace WeatherForecastSample.Specs
     [Binding]
     internal class Startup
     {
-        private readonly IObjectContainer _container;
-
-        public Startup(IObjectContainer container)
+        [ScenarioDependencies]
+        public static IServiceCollection CreateServices()
         {
-            _container = container;
-        }
+            var services = new ServiceCollection();
 
-        [BeforeScenario(Order = 0)]
-        public void RegisterDependencies()
-        {
+            services.AddWeatherForecastDependencies();
+            services.AddDbContext<WeatherForecastDbContext>(
+                options => options.UseInMemoryDatabase("WeatherForecastSample.WeatherForecast"));
+
             var authenticatedUser = new Mock<IAuthenticatedUser>();
-            _container.RegisterInstanceAs(authenticatedUser);
-            _container.RegisterInstanceAs(authenticatedUser.Object);
+            services.AddSingleton(authenticatedUser);
+            services.AddSingleton(authenticatedUser.Object);
 
-            var optionsBuilder = new DbContextOptionsBuilder<WeatherForecastDbContext>()
-                .UseInMemoryDatabase("WeatherForecastSample.WeatherForecast");
-            var dbContext = new WeatherForecastDbContext(optionsBuilder.Options);
-            _container.RegisterInstanceAs(dbContext);
-
-            _container.RegisterTypeAs<LocationRepository, ILocationRepository>();
-            _container.RegisterTypeAs<UserSettingsRepository, IUserSettingsRepository>();
-            _container.RegisterTypeAs<UserSettingsService, IUserSettingsService>();
-            _container.RegisterTypeAs<WeatherForecastService, IWeatherForecastService>();
-            _container.RegisterTypeAs<WeatherForecastRepository, IWeatherForecastRepository>();
+            return services;
         }
     }
 }
