@@ -11,8 +11,8 @@ Scenario: Retrieve weather forecast by day for user location
         And the preferred location of 'Jane' is 'London'
         And the following weather forecasts
             | Date             | Location  | Weather Type  |
-            | 16 February 2022 | Amsterdam | PartlyClouded |
-            | 16 February 2022 | London    | Rainy         |
-            | 16 February 2022 | Madrid    | Sunny         |
-    When I retrieve the weather forecast for 16 February 2022
+            | 17 February 2022 | Amsterdam | PartlyClouded |
+            | 17 February 2022 | London    | Rainy         |
+            | 17 February 2022 | Madrid    | Sunny         |
+    When I retrieve the weather forecast for 17 February 2022
     Then the weather forecast for 'London' is returned
