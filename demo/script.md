@@ -213,7 +213,7 @@
 1. Implement `When`
     ```csharp
     [When(@"I retrieve the weather forecast for (.*)")]
-    public void WhenIRetrieveTheWeatherForecastForFebruary(DateTime date)
+    public void WhenIRetrieveTheWeatherForecastForDate(DateTime date)
     {
         _actualWeatherForecast = _weatherForecastService.GetByDate(date);
     }
@@ -319,7 +319,7 @@
 
 1. Run scenario.
 
-1. Change type of date parameter to `DateOnly` in `WhenIRetrieveTheWeatherForecastForFebruary`.
+1. Change type of date parameter to `DateOnly` in `WhenIRetrieveTheWeatherForecastForDate`.
 
 1. Run scenario
 
