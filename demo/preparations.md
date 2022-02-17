@@ -38,7 +38,7 @@ Follow the steps below to create 'demo' branches from `main`.
 1. Walk through the demo script until the step: _Switch to `demo-3-dateonly-in-entity` branch_
 1. Commit all changes
 1. Replace `DateTime` with `DateOnly` in the `WeatherForecast` entity. Fix all errors.
-TODO: 1. Add `global using WeatherForecastSample.Specs.Support;` to the implicit usings.
+1. Add `global using WeatherForecastSample.Specs.Support;` to the implicit usings.
 1. Commit (and push) all changes
 1. Create `demo-4-share-dbcontext` branch from `demo-3-dateonly-in-entity`
 
