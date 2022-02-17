@@ -516,14 +516,19 @@ Use Context Injection
         {
             var services = new ServiceCollection();
 
+            // Register the Web API dependencies
             services.AddWeatherForecastDependencies();
+
+            // Register the DbContext with in memory database
             services.AddDbContext<WeatherForecastDbContext>(
                 options => options.UseInMemoryDatabase("WeatherForecastSample.WeatherForecast"));
 
+            // Created and register the authenticated user
             var authenticatedUser = new Mock<IAuthenticatedUser>();
             services.AddSingleton(authenticatedUser);
             services.AddSingleton(authenticatedUser.Object);
 
+            // Register the Support classes
             services.AddTransient<DataContext>();
 
             return services;
