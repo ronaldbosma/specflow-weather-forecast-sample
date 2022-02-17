@@ -506,4 +506,29 @@ Use Context Injection
 
 1. Show available plugins on [SpecFlow site](https://docs.specflow.org/projects/specflow/en/latest/Extend/Available-Plugins.html).
 
+1. Update startup
+    ```csharp
+    [Binding]
+    internal class Startup
+    {
+        [ScenarioDependencies]
+        public static IServiceCollection CreateServices()
+        {
+            var services = new ServiceCollection();
+
+            services.AddWeatherForecastDependencies();
+            services.AddDbContext<WeatherForecastDbContext>(
+                options => options.UseInMemoryDatabase("WeatherForecastSample.WeatherForecast"));
+
+            var authenticatedUser = new Mock<IAuthenticatedUser>();
+            services.AddSingleton(authenticatedUser);
+            services.AddSingleton(authenticatedUser.Object);
+
+            services.AddTransient<DataContext>();
+
+            return services;
+        }
+    }
+    ```
+
 1. Switch to `demo-6-service-collection` branch

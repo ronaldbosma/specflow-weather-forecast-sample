@@ -1,4 +1,5 @@
 ﻿using TechTalk.SpecFlow.Assist;
+using WeatherForecastSample.Specs.Support;
 
 namespace WeatherForecastSample.Specs.Hooks
 {
