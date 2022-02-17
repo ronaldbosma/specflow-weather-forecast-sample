@@ -6,6 +6,7 @@
 
 1. Show the app.
 1. Stop the Web API and UI.
+1. Show solution.
 
 ## Basics
 
@@ -13,12 +14,14 @@
 
 1. Show how to install SpecFlow extension
     1. Menu `Extensions > Manage Extensions'.
-    1. Choose `Installed`.
+    1. Choose `Online`.
     1. Search for `SpecFlow`.
+    1. Install extension if you haven't already
 
 1. SpecFlow project
     1. Show add SpecFlow project wizard.
     1. Show packages.
+        1. `SpecFlow.Plus.LivingDocPlugin` can generate a `.json` file with test results that can be included in SpecFlow LivingDoc.
 
 1. Create new feature file `Convert Temperature.feature` and add the following content.
     ```gherkin
@@ -247,13 +250,15 @@
 
 1. Run scenario. It should succeed.
 
+1. Show option to pass factory method to `CreateSet`.
+
 1. Replace `Then` implementation
     ```csharp
     var expectedWeatherForecast = table.CreateInstance<WeatherForecast>();
     _actualWeatherForecast.Should().Be(expectedWeatherForecast);
     ```
 
-1. Run test, it will **fail** ivm `Id`.
+1. Run test, it will **fail** because `Id` is populated in `Given` by in memory db, but it's `0` for the expected weather forecast.
 
 1. Replace `Then` implementation
     ```csharp
@@ -321,20 +326,20 @@
 
 1. Change type of date parameter to `DateOnly` in `WhenIRetrieveTheWeatherForecastForDate`.
 
-1. Run scenario
+1. Run scenario, it should fail because `DateOnly` can't be converted.
 
-1. Add step argument transformation to convert `DateTime` to `DateOnly
+1. Add another step argument transformation to convert today to `DateOnly`.
     ```csharp
-    [StepArgumentTransformation("(.*)")]
-    public DateOnly DateTimeToDateOnly(DateTime dateTime)
+    [StepArgumentTransformation("today")]
+    public DateOnly TodayToDateOnly()
     {
-        return DateOnly.FromDateTime(dateTime);
+        return DateOnly.FromDateTime(DateTime.Today);
     }
     ```
 
-1. Mention that converting from text **today** to `DateOnly` directly is possible. But then specific dates are not converted.
+1. Scenario should succeed.
 
-1. Add second weather forecast scenario for specific date
+1. Add second weather forecast scenario for specific date.
     ```gherkin
     Scenario: Retrieve weather forecast for specific date
         
@@ -350,6 +355,17 @@
             | Weather Type        | Sunny            |
             | Minimum Temperature | 9                |
             | Maximum Temperature | 12               |
+    ```
+
+1. Run scenario. It fails because we only convert today to a `DateOnly` and not `DateTime`.
+
+1. Replace `TodayToDateOnly` with step argument transformation to convert `DateTime` to `DateOnly`
+    ```csharp
+    [StepArgumentTransformation("(.*)")]
+    public DateOnly DateTimeToDateOnly(DateTime dateTime)
+    {
+        return DateOnly.FromDateTime(dateTime);
+    }
     ```
 
 1. Run scenario to show that it works.
@@ -374,6 +390,16 @@
 1. Show **PowerPoint** sheet with all hooks.
 
 1. Hooks are **global**. Set breakpoint in BeforeScenario and run a _Convert Temperature_ scenario in debug mode.
+
+1. Add `@database` tag to feature _Retrieve weather forecast for a day_.
+
+1. Scope `CleanDatabase` hook on `database` tag.
+
+1. Debug _Convert Temperature_ again and show hook is not executed.
+
+1. Show generated `TestCategory` attribute.
+
+1. Add `@ignore` tag and run scenarios.
 
 ## Value Retrievers & Comparers
 
@@ -435,38 +461,27 @@
 
 1. Add Value Comparer registration to `AssistHelperHooks.RegisterAssistHelpersBeforeTestRun()`
     ```csharp
-
-                Service.Instance.ValueComparers.Register(new DateOnlyValueComparer());
+    Service.Instance.ValueComparers.Register(new DateOnlyValueComparer());
     ```
 
 ## Context Injection
 
-Changes to show:
+1. Switch to `demo-4-share-dbcontext` branch.
 
-1. Retrieve weather forecasts for users preferred location
-1. UserSteps
-1. DataContext to share DbContext
-1. 
-1. Issue with Location name in weather forecast table
-	1. New WeatherForecast model
-	1. Changed step argument transformation
+1. Changes to show:
+    1. `WeatherForecastService`
+    1. `UserSettingsService`
+    1. `AuthenticatedUser`
 
+1. Show `DataContext` class
+1. Show use of `DataContext` in hooks en steps classes
+1. Show use of `ScenarioContext.Current` to share `DataContext` and `Mock<IAuthenticatedUser>`
+1. Run scenarios. Should succeed.
 
-Use Context Injection
-
-1. Inject `DataContext` as parameter in
-    1. DatabaseHooks
-    1. DefaultDataHooks
-    1. UserSteps
-    1. WeatherForecastSteps
-
+1. Inject `DataContext` in hooks and steps classes.
 1. Run scenarios
 
-1. Inject `Mock<IAuthenticatedUser>` as parameter in
-    1. DefaultDataHooks
-    1. UserSteps
-    1. WeatherForecastSteps
-
+1. Inject `Mock<IAuthenticatedUser>` in hooks and steps classes.
 1. Run scenarios. Should fail because mock can't be created
 
 1. Create `Startup.cs`
@@ -490,50 +505,16 @@ Use Context Injection
     }
     ```
 
+1. Run scenarios. Should succeed.
+
+1. Show manual instantion of `WeatherForecastService` in `WeatherForecastSteps`
+1. Switch to `demo-5-body` to show injection of `IWeatherForecastService`.
+1. Show changes `Startup.cs`
 1. Run scenarios
 
-1. Use BoDi to created dependencies
-    1. Inject `WeatherForecastService` in `WeatherForecastSteps`
-    1. Inject `DbContext` in `DataContext` and other classes
-
-1. Open `WeatherForecastSteps` and focus on `ctor`
-
-1. Switch to `demo-5-bodi` branch
-
+1. Show similarities between `Startup.cs` in _Specs_ project and `IServiceCollectionExtensions.AddWeatherForecastDependencies` in _Web API_.
+1. Switch to `demo-6-service-collection`
+1. Show added dependency to `SolidToken.SpecFlow.DependencyInjection`
+1. Show `Startup` implementation
 1. Run scenarios
-
-1. Show similarities between `Startup` code in `Specs` project, and DI registrations in Web API.
-
 1. Show available plugins on [SpecFlow site](https://docs.specflow.org/projects/specflow/en/latest/Extend/Available-Plugins.html).
-
-1. Update startup
-    ```csharp
-    [Binding]
-    internal class Startup
-    {
-        [ScenarioDependencies]
-        public static IServiceCollection CreateServices()
-        {
-            var services = new ServiceCollection();
-
-            // Register the Web API dependencies
-            services.AddWeatherForecastDependencies();
-
-            // Register the DbContext with in memory database
-            services.AddDbContext<WeatherForecastDbContext>(
-                options => options.UseInMemoryDatabase("WeatherForecastSample.WeatherForecast"));
-
-            // Created and register the authenticated user
-            var authenticatedUser = new Mock<IAuthenticatedUser>();
-            services.AddSingleton(authenticatedUser);
-            services.AddSingleton(authenticatedUser.Object);
-
-            // Register the Support classes
-            services.AddTransient<DataContext>();
-
-            return services;
-        }
-    }
-    ```
-
-1. Switch to `demo-6-service-collection` branch
