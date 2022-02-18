@@ -26,6 +26,7 @@ namespace WeatherForecastSample.UI.Authentication
             {
                 var response = await _accountApi.LoginAsync(request);
 
+                //TODO: use session storage instead of local storage
                 await _localStorage.SetItemAsync(Constants.AuthenticationTokenStoreKey, response.Token);
                 _authenticationStateProvider.NotifyUserAuthentication(request.Username);
 
