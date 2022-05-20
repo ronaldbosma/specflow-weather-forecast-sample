@@ -15,38 +15,48 @@ else
         <SettingsMenu />
     </div>
 
-    <div class="row m-3" style="min-height: 300px;">
+    <div id="selected-weather-forecast" class="row m-3" style="min-height: 300px;">
 
         <div class="col text-center">
-            <img src="images/@(SelectedWeatherForecast!.WeatherType).svg" alt="@SelectedWeatherForecast!.WeatherType" 
+            <img id="weather-type-image" src="images/@(SelectedWeatherForecast!.WeatherType).svg" alt="@SelectedWeatherForecast!.WeatherType" 
                  style="max-height:275px; max-width: 275px;" />
         </div>
             
         <div class="col-md-8 col-sm-8 col-xs-12 text-primary p-3">
-            <h2>@SelectedWeatherForecast.Date.ToString("D")</h2>
+            <h2 id="date" data-date="@SelectedWeatherForecast.Date.ToString("yyyy-MM-dd")">
+                @SelectedWeatherForecast.Date.ToString("D")
+            </h2>
 
-            <h3>@SelectedWeatherForecast.WeatherType in <LocationName LocationId="@SelectedWeatherForecast.LocationId" /></h3>
+            <h3>
+                <span id="weather-type">@SelectedWeatherForecast.WeatherType</span> 
+                in <LocationName LocationId="@SelectedWeatherForecast.LocationId" />
+            </h3>
             
             <div class="mt-3 align-middle">
                 <img src="images/Thermometer.svg" alt="thermometer" width="25" height="25" />
-                <TemperatureDisplay Temperature="@SelectedWeatherForecast.MaximumTemperature" /> / <TemperatureDisplay Temperature="@SelectedWeatherForecast.MinimumTemperature" />
+                <span id="maximum-temperature"><TemperatureDisplay Temperature="@SelectedWeatherForecast.MaximumTemperature" /></span>
+                 / 
+                <span id="minimum-temperature"><TemperatureDisplay Temperature="@SelectedWeatherForecast.MinimumTemperature" /></span>
             </div>
             <div class="mt-3 align-middle">
                 <img src="images/Raindrop.svg" alt="raindrop" width="25" height="25" />
-                @(SelectedWeatherForecast.NumberOfMillimetresRain)mm / @(SelectedWeatherForecast.PercentageOfChanceOfRain)%
+                <span id="number-of-mm-rain">@(SelectedWeatherForecast.NumberOfMillimetresRain)</span>mm
+                 / 
+                <span id="percentage-of-change-of-rain">@(SelectedWeatherForecast.PercentageOfChanceOfRain)</span>%
             </div>
             <div class="mt-3 align-middle">
                 <img src="images/Wind.svg" alt="wind" width="25" height="25" />
-                @SelectedWeatherForecast.WindDirection@SelectedWeatherForecast.WindStrength
+                <span id="wind-direction">@SelectedWeatherForecast.WindDirection</span><span id="wind-strength">@SelectedWeatherForecast.WindStrength</span>
             </div>
         </div>
     </div>
 
     <div class="row">
         <ul class="list-group list-group-horizontal">
+            @{ var i = 1; }
             @foreach (var weatherForecast in WeatherForecasts)
             {
-                <li class="list-group-item list-group-item-action flex-column align-items-center text-center @(weatherForecast.Date == SelectedWeatherForecast.Date ? "" : "active")"
+                <li id="day-@(i++)" class="list-group-item list-group-item-action flex-column align-items-center text-center @(weatherForecast.Date == SelectedWeatherForecast.Date ? "" : "active")"
                     @onclick="@(async () => await SelectWeatherForecastAsync(weatherForecast.Date))" style="cursor: pointer;">
                     
                     <p style="font-size:1.25rem;"><strong>@weatherForecast.Date.ToString("ddd")</strong></p>

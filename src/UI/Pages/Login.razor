@@ -1,7 +1,7 @@
 ﻿@page "/login"
 @inherits LoginBase
 
-<h3>Login</h3>
+<h3 id="page-title">Login</h3>
 
 @if (ShowAuthError)
 {
@@ -31,7 +31,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 text-right mt-3">
-            <button type="submit" class="btn btn-success">Login</button>
+            <button id="submit-login" type="submit" class="btn btn-success">Login</button>
         </div>
     </div>
 </EditForm>

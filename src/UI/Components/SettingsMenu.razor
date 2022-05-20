@@ -1,11 +1,11 @@
 ﻿<div class="nav">
     <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" @onclick="ToggleMenu">
+        <a id="settings-menu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" @onclick="ToggleMenu">
             <img src="./images/gear.svg" height="35" width="35" alt="settings" />
         </a>
         <div class="dropdown-menu @(showMenu ? "show":"")">
-            <a class="dropdown-item" href="/settings">Settings</a>
-            <a class="dropdown-item" href="/logout">Logout</a>
+            <a id="settings-menu-item" class="dropdown-item" href="/settings">Settings</a>
+            <a id="logout-menu-item" class="dropdown-item" href="/logout">Logout</a>
         </div>
     </div>
 </div>
