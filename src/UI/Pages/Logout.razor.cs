@@ -8,13 +8,9 @@ namespace WeatherForecastSample.UI.Pages
         [Inject]
         public IAuthenticationService AuthenticationService { get; set; } = null!;
 
-        [Inject]
-        public NavigationManager NavigationManager { get; set; } = null!;
-
         protected override async Task OnInitializedAsync()
         {
             await AuthenticationService.LogoutAsync();
-            NavigationManager.NavigateTo("/login");
         }
     }
 }

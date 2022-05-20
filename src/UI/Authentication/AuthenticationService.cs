@@ -1,4 +1,5 @@
 ﻿using Blazored.SessionStorage;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Refit;
 using System.Net;
@@ -12,12 +13,18 @@ namespace WeatherForecastSample.UI.Authentication
         private readonly IAccountApi _accountApi;
         private readonly CustomAuthenticationStateProvider _authenticationStateProvider;
         private readonly ISessionStorageService _sessionStorage;
+        private readonly NavigationManager _navigationManager;
 
-        public AuthenticationService(IAccountApi accountApi, AuthenticationStateProvider authenticationStateProvider, ISessionStorageService sessionStorage)
+        public AuthenticationService(
+            IAccountApi accountApi,
+            AuthenticationStateProvider authenticationStateProvider,
+            ISessionStorageService sessionStorage,
+            NavigationManager navigationManager)
         {
             _accountApi = accountApi;
             _authenticationStateProvider = (CustomAuthenticationStateProvider)authenticationStateProvider;
             _sessionStorage = sessionStorage;
+            _navigationManager = navigationManager;
         }
 
         public async Task<LoginResponse> LoginAsync(LoginRequest request)
@@ -41,6 +48,7 @@ namespace WeatherForecastSample.UI.Authentication
         {
             await _sessionStorage.RemoveItemAsync(Constants.AuthenticationTokenStoreKey);
             _authenticationStateProvider.NotifyUserLogout();
+            _navigationManager.NavigateTo("/login");
         }
     }
 }
