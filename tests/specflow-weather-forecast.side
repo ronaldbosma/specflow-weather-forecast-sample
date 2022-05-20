@@ -368,6 +368,34 @@
       ],
       "value": ""
     }, {
+      "id": "41062c43-b654-4a1a-9e08-6629acda9942",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=#maximum-temperature > span",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "e08ab12f-fad3-4727-86a4-b3ea14514498",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#maximum-temperature > span",
+      "targets": [],
+      "value": "12 °C"
+    }, {
+      "id": "1113d019-bb8f-4b53-9775-8776ed6b1064",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=location",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "dc3d9764-e1f7-42b0-a3a9-a764b858aa07",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=location",
+      "targets": [],
+      "value": "Amsterdam"
+    }, {
       "id": "3854bd20-dab0-4163-bc92-97d10388bc48",
       "comment": "",
       "command": "click",
