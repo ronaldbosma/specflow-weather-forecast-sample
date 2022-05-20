@@ -7,17 +7,12 @@ namespace WeatherForecastSample.UI.Authentication
     public class AuthenticationHeaderHandler : DelegatingHandler
     {
         private readonly ISessionStorageService _sessionStorage;
-        private readonly IAuthenticationService _authenticationService;
         private readonly ILogger<AuthenticationHeaderHandler> _logger;
 
-        public AuthenticationHeaderHandler(
-            ISessionStorageService sessionStorage,
-            IAuthenticationService authenticationService,
-            ILogger<AuthenticationHeaderHandler> logger) 
+        public AuthenticationHeaderHandler(ISessionStorageService sessionStorage,ILogger<AuthenticationHeaderHandler> logger) 
             : base()
         {
             _sessionStorage = sessionStorage;
-            _authenticationService = authenticationService;
             _logger = logger;
         }
 
@@ -33,14 +28,13 @@ namespace WeatherForecastSample.UI.Authentication
 
                 return response;
             }
-            // We don't receive a response message with Unauthorized (401) when the token is expired.
-            // Instead a HttpRequestException is thrown from javascript with the message 'TypeError: Failed to fetch'.
             catch (HttpRequestException ex) when (ex.StatusCode == null && ex.Message == "TypeError: Failed to fetch")
             {
-                _logger.LogError("Something went terrible wrong");
-                await _authenticationService.LogoutAsync();
+                _logger.LogError(ex, $"{ex.GetType()} was raised with message {ex.Message}, which most likely means the user is unauthorized due to an expired token");
 
-                ////We need to return a response 
+                // We don't receive a response message with Unauthorized (401) when the token is expired.
+                // Instead a HttpRequestException is thrown from javascript with the message 'TypeError: Failed to fetch'.
+                // So we return an Unauthorized (401) response message.
                 return new HttpResponseMessage(HttpStatusCode.Unauthorized)
                 {
                     RequestMessage = request
