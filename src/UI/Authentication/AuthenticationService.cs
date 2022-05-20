@@ -1,4 +1,4 @@
-﻿using Blazored.LocalStorage;
+﻿using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Refit;
 using System.Net;
@@ -11,13 +11,13 @@ namespace WeatherForecastSample.UI.Authentication
     {
         private readonly IAccountApi _accountApi;
         private readonly CustomAuthenticationStateProvider _authenticationStateProvider;
-        private readonly ILocalStorageService _localStorage;
+        private readonly ISessionStorageService _sessionStorage;
 
-        public AuthenticationService(IAccountApi accountApi, AuthenticationStateProvider authenticationStateProvider, ILocalStorageService localStorage)
+        public AuthenticationService(IAccountApi accountApi, AuthenticationStateProvider authenticationStateProvider, ISessionStorageService sessionStorage)
         {
             _accountApi = accountApi;
             _authenticationStateProvider = (CustomAuthenticationStateProvider)authenticationStateProvider;
-            _localStorage = localStorage;
+            _sessionStorage = sessionStorage;
         }
 
         public async Task<LoginResponse> LoginAsync(LoginRequest request)
@@ -26,8 +26,7 @@ namespace WeatherForecastSample.UI.Authentication
             {
                 var response = await _accountApi.LoginAsync(request);
 
-                //TODO: use session storage instead of local storage
-                await _localStorage.SetItemAsync(Constants.AuthenticationTokenStoreKey, response.Token);
+                await _sessionStorage.SetItemAsync(Constants.AuthenticationTokenStoreKey, response.Token);
                 _authenticationStateProvider.NotifyUserAuthentication(request.Username);
 
                 return new LoginResponse { IsAuthenticationSuccessful = true };
@@ -40,7 +39,7 @@ namespace WeatherForecastSample.UI.Authentication
 
         public async Task LogoutAsync()
         {
-            await _localStorage.RemoveItemAsync(Constants.AuthenticationTokenStoreKey);
+            await _sessionStorage.RemoveItemAsync(Constants.AuthenticationTokenStoreKey);
             _authenticationStateProvider.NotifyUserLogout();
         }
     }

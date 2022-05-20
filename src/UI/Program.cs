@@ -1,4 +1,4 @@
-using Blazored.LocalStorage;
+using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -34,7 +34,7 @@ builder.Services.AddRefitClient<ILocationApi>()
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
 
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
