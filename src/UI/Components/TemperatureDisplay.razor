@@ -4,6 +4,7 @@
 
 @code {
     private string _temperatureDisplay = string.Empty;
+    private WeatherForecastSample.Shared.Models.UserSettings _userSettings = null!;
 
     [Parameter]
     public int Temperature { get; set; }
@@ -11,9 +12,12 @@
     protected override async Task OnInitializedAsync()
     {
         //TODO: load user settings once, or get from cascading value
-        var userSettings = await UserSettingsApi.GetUserSettingsAsync();
+        _userSettings = await UserSettingsApi.GetUserSettingsAsync();
+    }
 
+    protected override async Task OnParametersSetAsync()
+    {
         var temperature = WeatherForecastSample.Shared.Temperature.FromDegreesCelsius(Temperature);
-        _temperatureDisplay = temperature.ToString(userSettings.TemperatureUnit);
+        _temperatureDisplay = temperature.ToString(_userSettings.TemperatureUnit);
     }
 }
