@@ -1,0 +1,418 @@
+{
+  "id": "df53acf0-631f-4da4-8f08-59113148b991",
+  "version": "2.0",
+  "name": "specflow-weather-forecast",
+  "url": "https://localhost:7112",
+  "tests": [{
+    "id": "038fde9c-c588-4e18-b712-c78ae79ea5aa",
+    "name": "Test",
+    "commands": [{
+      "id": "5dba6ef9-5074-4ad1-8659-e1fe626691cd",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f5fb0d20-d461-40ce-9e99-0bcceba227be",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "945x1012",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "704ba22d-0382-4ea5-8147-e6dca1a4ae92",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "John"
+    }, {
+      "id": "d47a77ec-4627-470a-8e08-01a7d6b75123",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "P@ssw0rd"
+    }, {
+      "id": "17b55c96-741e-435f-afe6-78d98c1019aa",
+      "comment": "",
+      "command": "click",
+      "target": "id=submit-login",
+      "targets": [
+        ["id=submitLogin", "id"],
+        ["css=#submitLogin", "css:finder"],
+        ["xpath=//button[@id='submitLogin']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/form/div[3]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4e4d7eb0-ba1e-44c8-83bd-65ef42de8f84",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=#maximum-temperature > span",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "d1b9c014-667e-4948-8be7-0427c8b5bfc6",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#maximum-temperature > span",
+      "targets": [],
+      "value": "12 °C"
+    }, {
+      "id": "d1aa445d-9267-421e-adc9-b5499bd1f601",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=location",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "c81a2a82-eecd-467c-9536-4e1f2b31beac",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=location",
+      "targets": [],
+      "value": "Amsterdam"
+    }, {
+      "id": "840fdfc2-0e41-436c-9f1a-7b9ac360fedf",
+      "comment": "",
+      "command": "click",
+      "target": "id=day-5",
+      "targets": [
+        ["css=.list-group-item:nth-child(3) > img", "css:finder"],
+        ["xpath=(//img[@alt='Sunny'])[4]", "xpath:img"],
+        ["xpath=//div[@id='app']/main/div[2]/div[3]/ul/li[3]/img", "xpath:idRelative"],
+        ["xpath=//li[3]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e8a6a974-8202-499c-8f28-b346dbbc07a8",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=#maximum-temperature > span",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "7c435540-5518-44fe-9f04-7b218f6877bf",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#maximum-temperature > span",
+      "targets": [],
+      "value": "2 °C"
+    }, {
+      "id": "c275e5b6-7081-4fd5-a8f1-561ae96d5247",
+      "comment": "",
+      "command": "click",
+      "target": "id=settings-menu",
+      "targets": [
+        ["css=#settings-menu > img", "css:finder"],
+        ["xpath=//img[@alt='settings']", "xpath:img"],
+        ["xpath=//a[@id='settings-menu']/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a2c471be-e6b0-486b-b40d-51ce55d2dc9b",
+      "comment": "",
+      "command": "click",
+      "target": "id=settings-menu-item",
+      "targets": [
+        ["id=settings-menu-item", "id"],
+        ["linkText=Settings", "linkText"],
+        ["css=#settings-menu-item", "css:finder"],
+        ["xpath=//a[contains(text(),'Settings')]", "xpath:link"],
+        ["xpath=//a[@id='settings-menu-item']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/div/div/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/settings')]", "xpath:href"],
+        ["xpath=//div[2]/div/div/div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Settings')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9b9058c5-bf51-421a-b499-0cc008d2736d",
+      "comment": "",
+      "command": "click",
+      "target": "id=degrees-fahrenheit-label",
+      "targets": [
+        ["css=.btn:nth-child(4)", "css:finder"],
+        ["xpath=//div[@id='temperatureUnit']/label[2]", "xpath:idRelative"],
+        ["xpath=//label[2]", "xpath:position"],
+        ["xpath=//label[contains(.,'°F')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "193fbf2a-5d60-4e3f-8424-81c5878189b5",
+      "comment": "",
+      "command": "click",
+      "target": "id=submit-user-settings",
+      "targets": [
+        ["id=submit-user-settings", "id"],
+        ["css=#submit-user-settings", "css:finder"],
+        ["xpath=//button[@id='submit-user-settings']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/form/div[3]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b9176434-d0ff-4141-80dc-4b67919d4d96",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=#maximum-temperature > span",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "4cd32274-39c2-4a57-a563-dad1b6dd2c46",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#maximum-temperature > span",
+      "targets": [],
+      "value": "54 °F"
+    }, {
+      "id": "23c05968-36f9-4054-a522-060122747556",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=location",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "eaf55354-9337-4fed-bdda-5a7f5d83f5bd",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=location",
+      "targets": [],
+      "value": "Amsterdam"
+    }, {
+      "id": "83d5289b-267d-4575-8e0e-df5581a6d873",
+      "comment": "",
+      "command": "click",
+      "target": "id=settings-menu",
+      "targets": [
+        ["id=settings-menu", "id"],
+        ["css=#settings-menu", "css:finder"],
+        ["xpath=//a[@id='settings-menu']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/div/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8ff2e759-1400-44b0-9d88-819b93ae0853",
+      "comment": "",
+      "command": "click",
+      "target": "id=settings-menu-item",
+      "targets": [
+        ["id=settings-menu-item", "id"],
+        ["linkText=Settings", "linkText"],
+        ["css=#settings-menu-item", "css:finder"],
+        ["xpath=//a[contains(text(),'Settings')]", "xpath:link"],
+        ["xpath=//a[@id='settings-menu-item']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/div/div/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/settings')]", "xpath:href"],
+        ["xpath=//div[2]/div/div/div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Settings')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e4220ee7-967e-4cde-87b7-86c84cc1beb0",
+      "comment": "",
+      "command": "click",
+      "target": "id=location",
+      "targets": [
+        ["id=location", "id"],
+        ["css=#location", "css:finder"],
+        ["xpath=//select[@id='location']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/form/div[2]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "28fcf6c0-c5d0-4e2d-aadd-f7dab7417a9d",
+      "comment": "",
+      "command": "select",
+      "target": "id=location",
+      "targets": [],
+      "value": "label=Madrid"
+    }, {
+      "id": "d835cf3d-c8f3-4947-b888-3d252150a202",
+      "comment": "",
+      "command": "click",
+      "target": "id=submit-user-settings",
+      "targets": [
+        ["id=submit-user-settings", "id"],
+        ["css=#submit-user-settings", "css:finder"],
+        ["xpath=//button[@id='submit-user-settings']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/form/div[3]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6b06b5d4-34c7-48d4-a5c6-d8dc354ce9bb",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=#maximum-temperature > span",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "bd8094f0-1d6f-4102-aa15-98348fdde9e8",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#maximum-temperature > span",
+      "targets": [],
+      "value": "84 °F"
+    }, {
+      "id": "127ba91a-c709-4198-9e3b-bf5fc9a8a64b",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=location",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "a64a9ba6-af6e-4894-99a9-e0b148509d10",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=location",
+      "targets": [],
+      "value": "Madrid"
+    }, {
+      "id": "6c5092c1-626b-41cc-b446-792b68b4f780",
+      "comment": "",
+      "command": "click",
+      "target": "id=settings-menu",
+      "targets": [
+        ["id=settings-menu", "id"],
+        ["css=#settings-menu", "css:finder"],
+        ["xpath=//a[@id='settings-menu']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/div/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e81a7b54-3dcb-4e3e-a5b7-ef0ecbb011c9",
+      "comment": "",
+      "command": "click",
+      "target": "id=settings-menu-item",
+      "targets": [
+        ["id=settings-menu-item", "id"],
+        ["linkText=Settings", "linkText"],
+        ["css=#settings-menu-item", "css:finder"],
+        ["xpath=//a[contains(text(),'Settings')]", "xpath:link"],
+        ["xpath=//a[@id='settings-menu-item']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/div/div/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/settings')]", "xpath:href"],
+        ["xpath=//div[2]/div/div/div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Settings')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "675cf28d-c381-4203-b33d-6d1fd1466577",
+      "comment": "",
+      "command": "click",
+      "target": "id=degrees-celsius-label",
+      "targets": [
+        ["css=.btn:nth-child(4)", "css:finder"],
+        ["xpath=//div[@id='temperatureUnit']/label[2]", "xpath:idRelative"],
+        ["xpath=//label[2]", "xpath:position"],
+        ["xpath=//label[contains(.,'°F')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5be11ea6-a007-49bb-8ec2-f1d1a50ca4a4",
+      "comment": "",
+      "command": "click",
+      "target": "id=location",
+      "targets": [
+        ["id=location", "id"],
+        ["css=#location", "css:finder"],
+        ["xpath=//select[@id='location']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/form/div[2]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "44e4ed13-6d37-45ad-9379-4d3da28d3b94",
+      "comment": "",
+      "command": "select",
+      "target": "id=location",
+      "targets": [],
+      "value": "label=Amsterdam"
+    }, {
+      "id": "3232dab1-9f49-4ed1-b69a-edbcd2819764",
+      "comment": "",
+      "command": "click",
+      "target": "id=submit-user-settings",
+      "targets": [
+        ["id=submit-user-settings", "id"],
+        ["css=#submit-user-settings", "css:finder"],
+        ["xpath=//button[@id='submit-user-settings']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/form/div[3]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3854bd20-dab0-4163-bc92-97d10388bc48",
+      "comment": "",
+      "command": "click",
+      "target": "id=settings-menu",
+      "targets": [
+        ["css=#settings-menu > img", "css:finder"],
+        ["xpath=//img[@alt='settings']", "xpath:img"],
+        ["xpath=//a[@id='settings-menu']/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dea69060-c826-46d5-a2ac-c20db1478608",
+      "comment": "",
+      "command": "click",
+      "target": "id=logout-menu-item",
+      "targets": [
+        ["id=logout-menu-item", "id"],
+        ["linkText=Logout", "linkText"],
+        ["css=#logout-menu-item", "css:finder"],
+        ["xpath=//a[contains(text(),'Logout')]", "xpath:link"],
+        ["xpath=//a[@id='logout-menu-item']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div[2]/div/div/div/div/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/logout')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "12eb6af0-06be-4418-addc-3556e798c959",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "21a2e7f1-5ff2-45a3-bd6c-39962c6727f9",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://localhost:7112/"],
+  "plugins": []
+}
