@@ -17,21 +17,17 @@ builder.Services.AddRefitClient<IAccountApi>()
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7288/api"))
                 .SetHandlerLifetime(TimeSpan.FromMinutes(2));
 
-builder.Services.AddTransient<AuthenticationHeaderHandler>();
-builder.Services.AddRefitClient<IWeatherForecastApi>()
+builder.Services.AddRefitClient<IWeatherForecastApi>(RefitAuthSettingsHelper.CreateRefitSettings)
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7288/api"))
-                .SetHandlerLifetime(TimeSpan.FromMinutes(2))
-                .AddHttpMessageHandler<AuthenticationHeaderHandler>();
+                .SetHandlerLifetime(TimeSpan.FromMinutes(2));
 
-builder.Services.AddRefitClient<IUserSettingsApi>()
+builder.Services.AddRefitClient<IUserSettingsApi>(RefitAuthSettingsHelper.CreateRefitSettings)
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7288/api"))
-                .SetHandlerLifetime(TimeSpan.FromMinutes(2))
-                .AddHttpMessageHandler<AuthenticationHeaderHandler>();
+                .SetHandlerLifetime(TimeSpan.FromMinutes(2));
 
-builder.Services.AddRefitClient<ILocationApi>()
+builder.Services.AddRefitClient<ILocationApi>(RefitAuthSettingsHelper.CreateRefitSettings)
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7288/api"))
-                .SetHandlerLifetime(TimeSpan.FromMinutes(2))
-                .AddHttpMessageHandler<AuthenticationHeaderHandler>();
+                .SetHandlerLifetime(TimeSpan.FromMinutes(2));
 
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddBlazoredSessionStorage();

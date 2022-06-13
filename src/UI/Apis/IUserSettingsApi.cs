@@ -3,7 +3,7 @@ using WeatherForecastSample.Shared.Models;
 
 namespace WeatherForecastSample.UI.Apis
 {
-    [Headers("Content-Type: application/json")]
+    [Headers("Content-Type: application/json", "Authorization: Bearer")]
     public interface IUserSettingsApi
     {
         [Get("/usersettings")]
