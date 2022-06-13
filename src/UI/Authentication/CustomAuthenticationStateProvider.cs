@@ -1,20 +1,17 @@
 ﻿using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Authorization;
-using System.Net.Http.Headers;
 using System.Security.Claims;
 
 namespace WeatherForecastSample.UI.Authentication
 {
     public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {
-        private readonly HttpClient _httpClient;
         private readonly ISessionStorageService _sessionStorage;
 
         private readonly static AuthenticationState Anonymous = new(new ClaimsPrincipal(new ClaimsIdentity()));
 
-        public CustomAuthenticationStateProvider(HttpClient httpClient, ISessionStorageService sessionStorage)
+        public CustomAuthenticationStateProvider(ISessionStorageService sessionStorage)
         {
-            _httpClient = httpClient;
             _sessionStorage = sessionStorage;
         }
 
@@ -25,8 +22,6 @@ namespace WeatherForecastSample.UI.Authentication
             {
                 return Anonymous;
             }
-
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
 
             return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(JwtParser.ParseClaimsFromJwt(token), Constants.AuthenticationType)));
         }
