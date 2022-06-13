@@ -46,7 +46,10 @@ namespace WeatherForecastSample.UI.Authentication
 
         public async Task LogoutAsync()
         {
-            await _sessionStorage.RemoveItemAsync(Constants.AuthenticationTokenStoreKey);
+            if (await _sessionStorage.ContainKeyAsync(Constants.AuthenticationTokenStoreKey).ConfigureAwait(false))
+            {
+                await _sessionStorage.RemoveItemAsync(Constants.AuthenticationTokenStoreKey).ConfigureAwait(false);
+            }
             _authenticationStateProvider.NotifyUserLogout();
             _navigationManager.NavigateTo("/login");
         }
