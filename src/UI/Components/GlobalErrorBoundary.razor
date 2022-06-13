@@ -1,0 +1,32 @@
+﻿@inherits GlobalErrorBoundaryBase
+
+@if (CurrentException is null)
+{
+    @ChildContent
+}
+else if (ErrorContent is not null)
+{
+    @ErrorContent(CurrentException)
+}
+else
+{
+    <div class="blazor-error-boundary">
+        @if (IsApiConnectionError)
+        {
+            <p>
+                Unable to connect to API. Either the API is turned off or the authentication token is expired. 
+                Start the API and refresh or <a href="#" @onclick="@(async () => await GoToLoginPageAsync())">go to the Login page</a>.
+            </p>
+            <br />
+            <br />
+        }
+
+        <h3>Errors:</h3>
+        @foreach (var exception in ReceivedExceptions)
+        {
+            <div>
+                @exception.Message
+            </div>
+        }
+    </div>
+}
