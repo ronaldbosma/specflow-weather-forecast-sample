@@ -5,6 +5,9 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
 {
     internal static class HostExtensions
     {
+        /// <summary>
+        /// Seed example data in the database
+        /// </summary>
         public static IHost SeedData(this IHost host)
         {
             using (var scope = host.Services.CreateScope())

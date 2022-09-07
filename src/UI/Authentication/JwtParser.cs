@@ -3,6 +3,9 @@ using System.Text.Json;
 
 namespace WeatherForecastSample.UI.Authentication
 {
+    /// <summary>
+    /// Helper class to parse a Jwt token
+    /// </summary>
     internal static class JwtParser
     {
         public static IEnumerable<Claim> ParseClaimsFromJwt(string jwt)

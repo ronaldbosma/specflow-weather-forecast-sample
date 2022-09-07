@@ -2,6 +2,9 @@
 
 namespace WeatherForecastSample.WebAPI.DataAccess.TestData
 {
+    /// <summary>
+    /// Creates user test data
+    /// </summary>
     internal class IdentityUserSeeder
     {
         private readonly WeatherForecastDbContext _context;

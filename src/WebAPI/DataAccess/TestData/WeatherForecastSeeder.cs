@@ -3,6 +3,9 @@ using WeatherForecastSample.WebAPI.Entities;
 
 namespace WeatherForecastSample.WebAPI.DataAccess.TestData
 {
+    /// <summary>
+    /// Creates weather forecast test data
+    /// </summary>
     internal class WeatherForecastSeeder
     {
         private readonly WeatherForecastDbContext _context;

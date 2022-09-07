@@ -2,9 +2,6 @@
 
 namespace WeatherForecastSample.WebAPI.ApplicationLogic
 {
-    /// <summary>
-    /// Represents the current authenticated user.
-    /// </summary>
     internal class AuthenticatedUser : IAuthenticatedUser
     {
         private readonly IHttpContextAccessor _httpContextAccessor;

@@ -2,6 +2,9 @@
 
 namespace WeatherForecastSample.WebAPI.DataAccess.TestData
 {
+    /// <summary>
+    /// Creates location test data
+    /// </summary>
     internal class LocationSeeder
     {
         private readonly WeatherForecastDbContext _context;

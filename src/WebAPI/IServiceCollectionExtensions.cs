@@ -8,6 +8,9 @@ using WeatherForecastSample.WebAPI.DataAccess;
 
 namespace WeatherForecastSample.WebAPI
 {
+    /// <summary>
+    /// Contains helper methods to configure the <see cref="IServiceCollection"/>
+    /// </summary>
     internal static class IServiceCollectionExtensions
     {
         public static IServiceCollection AddWeatherForecastDependencies(this IServiceCollection services)
@@ -22,6 +25,10 @@ namespace WeatherForecastSample.WebAPI
                 .AddSingleton<ISystemDate, SystemDate>();
         }
 
+        /// <remarks>
+        /// Adding the <see cref="WeatherForecastDbContext"/> is separated from the other dependencies,
+        /// so we can register a different database type for test automation (e.g. in memory)
+        /// </remarks>
         public static IServiceCollection AddWeatherForecastDbContext(this IServiceCollection services)
         {
             return services.AddDbContext<WeatherForecastDbContext>(
