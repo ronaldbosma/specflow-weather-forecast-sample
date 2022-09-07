@@ -7,11 +7,13 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
     {
         private readonly IWeatherForecastRepository _repository;
         private readonly IUserSettingsService _userSettingsService;
+        private readonly ISystemDate _systemDate;
 
-        public WeatherForecastService(IWeatherForecastRepository repository, IUserSettingsService userSettings)
+        public WeatherForecastService(IWeatherForecastRepository repository, IUserSettingsService userSettings, ISystemDate systemDate)
         {
             _repository = repository;
             _userSettingsService = userSettings;
+            _systemDate = systemDate;
         }
 
         public WeatherForecast GetByDate(DateOnly date)
@@ -23,11 +25,9 @@ namespace WeatherForecastSample.WebAPI.ApplicationLogic
         public IEnumerable<WeatherForecast> GetForComingWeek()
         {
             var locationId = _userSettingsService.GetUserSettingsForCurrentUser().LocationId;
+            var endOfComingWeek = _systemDate.Today.AddDays(6);
 
-            var today = DateOnly.FromDateTime(DateTime.Today);
-            var endOfComingWeek = today.AddDays(6);
-
-            return _repository.GetForDateRange(locationId, today, endOfComingWeek);
+            return _repository.GetForDateRange(locationId, _systemDate.Today, endOfComingWeek);
         }
     }
 }

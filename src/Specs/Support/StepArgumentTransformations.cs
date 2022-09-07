@@ -5,10 +5,17 @@ namespace WeatherForecastSample.Specs.Support
     [Binding]
     internal class StepArgumentTransformations
     {
+        private readonly SystemDateFake _systemDate;
+
+        public StepArgumentTransformations(SystemDateFake systemDate)
+        {
+            _systemDate = systemDate;
+        }
+
         [StepArgumentTransformation("today")]
         public DateTime TransformDateTimeToDate()
         {
-            return DateTime.Today;
+            return _systemDate.Today.ToDateTime(TimeOnly.MinValue);
         }
 
         [StepArgumentTransformation("(.*)")]

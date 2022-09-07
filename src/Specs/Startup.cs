@@ -16,6 +16,10 @@ namespace WeatherForecastSample.Specs
             services.AddDbContext<WeatherForecastDbContext>(
                 options => options.UseInMemoryDatabase("WeatherForecastSample.WeatherForecast"));
 
+            var systemDate = new SystemDateFake();
+            services.AddSingleton<ISystemDate>(systemDate);
+            services.AddSingleton(systemDate);
+
             var authenticatedUser = new Mock<IAuthenticatedUser>();
             services.AddSingleton(authenticatedUser);
             services.AddSingleton(authenticatedUser.Object);

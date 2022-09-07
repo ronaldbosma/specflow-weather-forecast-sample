@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using WeatherForecastSample.WebAPI.ApplicationLogic;
 
 namespace WeatherForecastSample.WebAPI.DataAccess.TestData
 {
@@ -11,6 +12,7 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<WeatherForecastDbContext>();
                 var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+                var systemDate = services.GetRequiredService<ISystemDate>();
 
                 // Always recreate database so we don't need migrations
                 context.Database.EnsureDeleted();
@@ -20,7 +22,7 @@ namespace WeatherForecastSample.WebAPI.DataAccess.TestData
                 new IdentityUserSeeder(context, userManager).SeedData();
                 new LocationSeeder(context).SeedData();
                 new UserSettingsSeeder(context, userManager).SeedData();
-                new WeatherForecastSeeder(context).SeedData();
+                new WeatherForecastSeeder(context, systemDate).SeedData();
             }
 
             return host;

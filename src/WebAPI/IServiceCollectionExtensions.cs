@@ -18,7 +18,8 @@ namespace WeatherForecastSample.WebAPI
                 .AddTransient<IUserSettingsRepository, UserSettingsRepository>()
                 .AddTransient<IUserSettingsService, UserSettingsService>()
                 .AddTransient<IWeatherForecastRepository, WeatherForecastRepository>()
-                .AddTransient<IWeatherForecastService, WeatherForecastService>();
+                .AddTransient<IWeatherForecastService, WeatherForecastService>()
+                .AddSingleton<ISystemDate, SystemDate>();
         }
 
         public static IServiceCollection AddWeatherForecastDbContext(this IServiceCollection services)

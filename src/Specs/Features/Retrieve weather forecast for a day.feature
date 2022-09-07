@@ -6,6 +6,8 @@ I want to be able to retrieve a weather forecast for a specified date
 
 Note: the default unit of temperature is °C.
 
+Background: 
+    Given today is 16 March 2022
 
 Scenario: Retrieve weather forecast
     
