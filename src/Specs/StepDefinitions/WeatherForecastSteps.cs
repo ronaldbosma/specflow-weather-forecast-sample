@@ -1,5 +1,3 @@
-using TechTalk.SpecFlow.Assist;
-
 namespace WeatherForecastSample.Specs.StepDefinitions
 {
     [Binding]

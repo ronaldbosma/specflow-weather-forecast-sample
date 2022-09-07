@@ -1,5 +1,3 @@
-using WeatherForecastSample.Shared;
-
 namespace WeatherForecastSample.Specs.StepDefinitions
 {
     [Binding]

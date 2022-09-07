@@ -1,6 +1,4 @@
-﻿using TechTalk.SpecFlow.Assist;
-
-namespace WeatherForecastSample.Specs.Support
+﻿namespace WeatherForecastSample.Specs.Support
 {
     [Binding]
     internal class StepArgumentTransformations

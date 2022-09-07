@@ -1,6 +1,4 @@
-﻿using TechTalk.SpecFlow.Assist;
-
-namespace WeatherForecastSample.Specs.Support
+﻿namespace WeatherForecastSample.Specs.Support
 {
     /// <summary>
     /// Value Comparer that can be used by Table Assist Helpers to compare a value of type <see cref="DateOnly"/>.
