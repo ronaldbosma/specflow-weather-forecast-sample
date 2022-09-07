@@ -15,4 +15,4 @@ Scenario: Retrieve weather forecast by day for user location
             | 16 March 2022 | London    | Rainy         |
             | 16 March 2022 | Madrid    | Sunny         |
     When I retrieve the weather forecast for 16 March 2022
-    Then the weather forecast for 'London' is returned
+    Then the weather forecast for 'London' with weather type 'Rainy' is returned

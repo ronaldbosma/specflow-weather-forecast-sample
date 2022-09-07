@@ -41,12 +41,13 @@ namespace WeatherForecastSample.Specs.StepDefinitions
             expectedWeatherForecast.CompareToInstance(_actualWeatherForecast);
         }
 
-        [Then(@"the weather forecast for '([^']*)' is returned")]
-        public void ThenTheWeatherForecastForIsReturned(string expectedLocation)
+        [Then(@"the weather forecast for '([^']*)' with weather type '([^']*)' is returned")]
+        public void ThenTheWeatherForecastForWithWeatherTypeIsReturned(string expectedLocation, WeatherType expectedWeatherType)
         {
             var expectedLocationId = expectedLocation.GetTechnicalId();
             _actualWeatherForecast.Should().NotBeNull();
             _actualWeatherForecast!.LocationId.Should().Be(expectedLocationId);
+            _actualWeatherForecast!.WeatherType.Should().Be(expectedWeatherType);
         }
 
         [Then(@"the following weather forecasts are returned")]
