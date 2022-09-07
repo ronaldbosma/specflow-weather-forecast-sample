@@ -11,7 +11,7 @@
         }
 
         [Given(@"today is (.*)")]
-        public void GivenTodayIsMarch(DateOnly today)
+        public void GivenTodayIs(DateOnly today)
         {
             _systemDate.Today = today;
         }

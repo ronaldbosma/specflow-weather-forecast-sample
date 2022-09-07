@@ -14,7 +14,7 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         }
 
         [When(@"the temperature is (.*) °F")]
-        public void WhenTheTemperatureIsF(int degreesFahrenheit)
+        public void WhenTheTemperatureIsNumberOfDegreesFahrenheit(int degreesFahrenheit)
         {
             _actualTemperature = Temperature.FromDegreesFahrenheit(degreesFahrenheit);
         }
@@ -27,7 +27,7 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         }
 
         [Then(@"the temperature is (.*) °C")]
-        public void ThenTheTemperatureIsC(int expectedDegreesCelsius)
+        public void ThenTheTemperatureIsNumberOfDegreesCelius(int expectedDegreesCelsius)
         {
             _actualTemperature.Should().NotBeNull();
             _actualTemperature!.DegreesCelsius.Should().Be(expectedDegreesCelsius);

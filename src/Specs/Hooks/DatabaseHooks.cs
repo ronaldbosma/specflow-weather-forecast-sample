@@ -11,7 +11,7 @@
         }
 
         [BeforeScenario(Order = 10)]
-        public void CleanDatabase()
+        public void CleanDatabaseBeforeScenario()
         {
             _dataContext.CleanDatabase();
         }

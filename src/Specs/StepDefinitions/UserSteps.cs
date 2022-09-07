@@ -20,7 +20,7 @@
         }
 
         [Given(@"the preferred location of '([^']*)' is '([^']*)'")]
-        public void GivenThePreferredLocationOfIs(string username, string preferredLocation)
+        public void GivenThePreferredLocationOfSpecifiedUserIs(string username, string preferredLocation)
         {
             _dataContext.AddUserSettings(username, TemperatureUnit.DegreesCelsius, preferredLocation.GetTechnicalId());
         }

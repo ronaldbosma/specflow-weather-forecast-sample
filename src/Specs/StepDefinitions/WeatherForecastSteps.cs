@@ -42,7 +42,7 @@ namespace WeatherForecastSample.Specs.StepDefinitions
         }
 
         [Then(@"the weather forecast for '([^']*)' with weather type '([^']*)' is returned")]
-        public void ThenTheWeatherForecastForWithWeatherTypeIsReturned(string expectedLocation, WeatherType expectedWeatherType)
+        public void ThenTheWeatherForecastForLocationWithWeatherTypeIsReturned(string expectedLocation, WeatherType expectedWeatherType)
         {
             var expectedLocationId = expectedLocation.GetTechnicalId();
             _actualWeatherForecast.Should().NotBeNull();

@@ -13,7 +13,7 @@
         }
 
         [BeforeScenario(Order = 20)]
-        public void CreateDefaultTestData()
+        public void CreateDefaultTestDataBeforeScenario()
         {
             _authenticatedUserFake.Setup(u => u.GetUsername()).Returns(Default.Username);
             _dataContext.AddUserWithSettings(Default.Username, TemperatureUnit.DegreesCelsius, Default.LocationId);
