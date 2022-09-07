@@ -1,5 +1,8 @@
 ﻿namespace WeatherForecastSample.Specs.Support
 {
+    /// <summary>
+    /// Context class with helper methods to interact with the <see cref="WeatherForecastDbContext"/>.
+    /// </summary>
     internal class DataContext
     {
         private readonly WeatherForecastDbContext _dbContext;

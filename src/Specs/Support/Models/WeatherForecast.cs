@@ -1,5 +1,9 @@
 ﻿namespace WeatherForecastSample.Specs.Support.Models
 {
+    /// <summary>
+    /// This helper class can be used by the Table Assist Helpers to get a WeatherForecast object
+    /// that has a Location specified by the name of the location instead of the id.
+    /// </summary>
     internal class WeatherForecast
     {
         public DateOnly Date { get; set; }
