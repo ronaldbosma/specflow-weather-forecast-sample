@@ -9,7 +9,7 @@ namespace WeatherForecastSample.WebAPI.Controllers.Mappers
             return new Shared.Models.UserSettings
             {
                 LocationId = source.LocationId,
-                TemperatureUnit = (Shared.Models.TemperatureUnit)source.TemperatureUnit
+                TemperatureUnit = source.TemperatureUnit.MapTo<Shared.Models.TemperatureUnit>()
             };
         }
 
@@ -18,7 +18,7 @@ namespace WeatherForecastSample.WebAPI.Controllers.Mappers
             return new UserSettings
             {
                 LocationId = source.LocationId,
-                TemperatureUnit = (TemperatureUnit)source.TemperatureUnit
+                TemperatureUnit = source.TemperatureUnit.MapTo<TemperatureUnit>()
             };
         }
     }
