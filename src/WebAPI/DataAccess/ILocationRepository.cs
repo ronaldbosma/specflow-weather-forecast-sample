@@ -4,8 +4,8 @@ namespace WeatherForecastSample.WebAPI.DataAccess
 {
     public interface ILocationRepository
     {
-        Task<IEnumerable<Location>> GetAllAsync();
+        IEnumerable<Location> GetAll();
 
-        Task<Location> GetByIdAsync(int id);
+        Location GetById(int id);
     }
 }

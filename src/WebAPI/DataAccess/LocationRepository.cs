@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WeatherForecastSample.WebAPI.Entities;
+﻿using WeatherForecastSample.WebAPI.Entities;
 
 namespace WeatherForecastSample.WebAPI.DataAccess
 {
@@ -12,14 +11,14 @@ namespace WeatherForecastSample.WebAPI.DataAccess
             _context = context;
         }
 
-        public async Task<IEnumerable<Location>> GetAllAsync()
+        public IEnumerable<Location> GetAll()
         {
-            return await _context.Locations.ToListAsync();
+            return _context.Locations.ToList();
         }
 
-        public async Task<Location> GetByIdAsync(int id)
+        public Location GetById(int id)
         {
-            var location = await _context.Locations.FindAsync(id);
+            var location = _context.Locations.Find(id);
             return location ?? throw new ArgumentException($"Unknown location id {id}", nameof(id));
         }
     }
