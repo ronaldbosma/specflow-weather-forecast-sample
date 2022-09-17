@@ -17,6 +17,7 @@ namespace WeatherForecastSample.WebAPI
         {
             return services
                 .AddTransient<IAuthenticatedUser, AuthenticatedUser>()
+                .AddTransient<IAuthenticationService, AuthenticationService>()
                 .AddTransient<ILocationRepository, LocationRepository>()
                 .AddTransient<IUserSettingsRepository, UserSettingsRepository>()
                 .AddTransient<IUserSettingsService, UserSettingsService>()

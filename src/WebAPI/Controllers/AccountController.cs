@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+﻿using Microsoft.AspNetCore.Mvc;
 using WeatherForecastSample.Shared.Authentication;
+using WeatherForecastSample.WebAPI.ApplicationLogic;
 
 namespace WeatherForecastSample.WebAPI.Controllers
 {
@@ -12,63 +8,25 @@ namespace WeatherForecastSample.WebAPI.Controllers
     [Route("api/accounts")]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IConfiguration _configuration;
-        private readonly IConfigurationSection _jwtSettings;
+        private readonly IAuthenticationService _authenticationService;
 
-        public AccountController(UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public AccountController(IAuthenticationService authenticationService)
         {
-            _userManager = userManager;
-            _configuration = configuration;
-            _jwtSettings = _configuration.GetSection("JwtSettings");
+            _authenticationService = authenticationService;
         }
 
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest userForAuthentication)
         {
-            var user = await _userManager.FindByNameAsync(userForAuthentication.Username);
-            if (user == null || !await _userManager.CheckPasswordAsync(user, userForAuthentication.Password))
+            var validCredentials = await _authenticationService.AreCredentialsValidAsync(userForAuthentication.Username, userForAuthentication.Password);
+            if (!validCredentials)
             {
                 return Unauthorized(new LoginResponse { ErrorMessage = "Login failed due to invalid credentials." });
             }
 
-            var signingCredentials = GetSigningCredentials();
-            var claims = GetClaims(user);
-            var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
-            var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            var token = _authenticationService.GenerateToken(userForAuthentication.Username);
 
             return Ok(new LoginResponse { IsAuthenticationSuccessful = true, Token = token });
-        }
-
-        private SigningCredentials GetSigningCredentials()
-        {
-            var key = Encoding.UTF8.GetBytes(_jwtSettings.GetSection("securityKey").Value);
-            var secret = new SymmetricSecurityKey(key);
-
-            return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
-        }
-
-        private static List<Claim> GetClaims(IdentityUser user)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.UserName)
-            };
-
-            return claims;
-        }
-
-        private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
-        {
-            var tokenOptions = new JwtSecurityToken(
-                issuer: _jwtSettings.GetSection("validIssuer").Value,
-                audience: _jwtSettings.GetSection("validAudience").Value,
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(Convert.ToDouble(_jwtSettings.GetSection("expiryInMinutes").Value)),
-                signingCredentials: signingCredentials
-            );
-
-            return tokenOptions;
         }
     }
 }
